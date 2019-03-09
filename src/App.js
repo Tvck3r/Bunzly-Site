@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Footer from './Components/Footer'
 import Featurette from './Components/Featurette';
+import Parallax from './Components/Parallax';
 
 const styles = theme => ({
   '@global': {
@@ -34,8 +35,8 @@ const styles = theme => ({
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
+    [theme.breakpoints.up('lg')]: {
+      width: 1100,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -82,6 +83,10 @@ function Pricing(props) {
   return (
     <React.Fragment>
       <CssBaseline />
+      <Parallax 
+          imgUrl='https://images.unsplash.com/photo-1551294444-20efb855d547?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'
+          minHeight = '300px'>
+      </Parallax>
       <AppBar color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
@@ -106,7 +111,24 @@ function Pricing(props) {
             It&apos;s built with default Material-UI components with little customization.
           </Typography>
         </div>
-        <Featurette></Featurette>
+        <Featurette
+          header='Define'
+          body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+          side='left'
+          src='https://images.unsplash.com/photo-1496902526517-c0f2cb8fdb6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'>
+        </Featurette>
+        <Featurette
+          header='Design'
+          body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+          side='right'
+          src='https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80'>
+        </Featurette>
+        <Featurette
+          header='Develop'
+          body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+          side='left'
+          src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
+        </Featurette>
         <br/>
         <br/>
         <br/>

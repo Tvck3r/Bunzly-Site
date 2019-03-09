@@ -7,59 +7,59 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1, 
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 3,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    [theme.breakpoints.down('xs')]: {
-        //backgroundColor: theme.palette.secondary.main
-      },
   },
   reverse: {
     [theme.breakpoints.down('xs')]: {
         backgroundColor: theme.palette.secondary.main,
-        //direction:'row-reverse',
       },
   },
+  image:{
+    borderRadius: '6px',
+    width:'100%',
+ 
+    //maxHeight:'300px',
+    margin:'auto'
+  }
   
 });
 
 function CenteredGrid(props) {
   const { classes } = props;
 
+  let directionVar = 'row'
+  if(props.side === 'right'){
+    directionVar = 'row-reverse'
+  }
+
+
+
   return (
     <div className={classes.root}>
-      <Grid container  spacing={24}>
-        <Grid item xs={12} sm ={3}>
-          <Paper className={classes.paper}>img1</Paper>
+      <Grid container direction={directionVar} spacing={24} alignItems='center'>
+        <Grid item xs={12} sm ={4}>
+          <img          
+              className={classes.image}
+              src={props.src}
+              alt="Featurette Img"
+          />
         </Grid>
-        <Grid item xs={12} sm ={9}>
+        <Grid item xs={12} sm ={8}>
             <Paper className={classes.paper}> 
-                <Typography gutterBottom variant="subtitle1">
-                    Standard license
-                </Typography>
+              <Typography gutterBottom variant="h3">
+                {props.header}
+              </Typography>
+              <Typography gutterBottom variant="subtitle1">
+                {props.body}
+              </Typography>
             </Paper>
         </Grid>
     </Grid>
-    <Grid container className= {classes.reverse} spacing={24}>
-        <Grid item xs={12} sm ={9}>
-          <Paper className={classes.paper}>a bunch of text</Paper>
-        </Grid>
-        <Grid item xs={12} sm ={3}>
-          <Paper className={classes.paper}>img1</Paper>
-        </Grid>
-    </Grid>    
-    <Grid container  spacing={24}>
-        <Grid item xs={12} sm ={3}>
-          <Paper className={classes.paper}>img1</Paper>
-        </Grid>
-        <Grid item xs={12} sm ={9}>
-          <Paper className={classes.paper}>a bunch of text</Paper>
-        </Grid>
-
-      </Grid>
     </div>
   );
 }
