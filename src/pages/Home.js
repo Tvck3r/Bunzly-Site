@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Footer from './Components/Footer'
-import Featurette from './Components/Featurette';
-import Parallax from './Components/Parallax';
+import Footer from '../components/Footer'
+import Featurette from '../components/Featurette';
+import NavAppBar from '../components/NavAppBar';
+
 
 const styles = theme => ({
   '@global': {
@@ -34,14 +31,25 @@ const styles = theme => ({
       marginRight: 'auto',
     },
   }, 
-  menuButton: {
-    marginLeft: -18,
-    marginRight: 10,
+  heroContent: {
+    maxWidth: 600,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 12}px`,
   },
-  rightbtn: {
-    marginRight: 10,
-  }
- 
+  cardHeader: {
+    backgroundColor: theme.palette.grey[200],
+  },
+  cardPricing: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    marginBottom: theme.spacing.unit * 2,
+  },
+  cardActions: {
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing.unit * 2,
+    },
+  },
 });
 
 function Home(props) {
@@ -49,24 +57,9 @@ function Home(props) {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <AppBar color="default" className={classes.appBar}>
-        <Toolbar>
-          <Button className={classes.lftbtn}> 
-          <Typography variant="h4" color="inherit" noWrap className={classes.toolbarTitle}>
-            Bunzly.io
-          </Typography>
-          </Button>
-          <Button className={classes.rightbtn}>Features</Button>
-          <Button className={classes.rightbtn}>Enterprise</Button>
-          <Button className={classes.rightbtn}>Support</Button>
-          <Button color="primary" variant="outlined">
-            Login
-          </Button>
-        </Toolbar>
-      </AppBar>
+  
+      <NavAppBar/>
       <main className={classes.layout}>
-        <br/>
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
             Pricing
@@ -94,11 +87,42 @@ function Home(props) {
           side='left'
           src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
         </Featurette>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </main> 
-      <Parallax 
-        imgUrl='https://images.unsplash.com/photo-1551294444-20efb855d547?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'/>
-
-
       <Footer/>
     </React.Fragment>
   );
