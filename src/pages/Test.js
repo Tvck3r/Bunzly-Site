@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import QuoteBlock from '../components/QuoteBlock'
-import HomeIcon from '@material-ui/icons/FormatQuote';
+import ParallaxBackground from '../components/ParallaxBackground';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
-class Test extends Component {
-  render() {
+const styles = theme => ({
+  parallax : {
+    backgroundColor: theme.palette.grey[800],
+    /* The image used */
+    backgroundImage:"url(https://www.w3schools.com/howto/img_parallax.jpg)",
+    /* Full height */
+    height:"100vh",
+    opacity:".65",
+    /* Create the parallax scrolling effect */
+     backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover", 
+  }
+});
 
-    const qtStyle = {
-      position: 'center',
-      top: '0'
-    }
-
-
-
+function Test(props) {
+  
+  const { classes } = props;
 
     return ( 
-      <div className={qtStyle}>
-        <HomeIcon  />
-      </div>  
-    )
-  }    
-}
+      <React.Fragment>
+      <CssBaseline />
 
-export default Test;
+      <div className={classes.parallax}>
+
+        </div>
+      </React.Fragment>
+    )
+}    
+
+
+export default withStyles(styles)(Test);

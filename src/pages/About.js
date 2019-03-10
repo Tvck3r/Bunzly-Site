@@ -16,7 +16,10 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
+import QuoteBlock from '../components/QuoteBlock';
 //import Markdown from '../components/Markdown'
+import Zoom from '@material-ui/core/Zoom';
+
 
 const styles = theme => ({
   layout: {
@@ -42,6 +45,7 @@ const styles = theme => ({
   mainFeaturedPost: {
     //backgroundColor: theme.palette.grey[800],
     backgroundImage:"url(https://images.unsplash.com/photo-1545427782-c1ba83cbb692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+    //https://stackoverflow.com/questions/39195687/setting-a-backgroundimage-with-react-inline-styles
     color: theme.palette.common.white,
     marginBottom: theme.spacing.unit * 4,
   },
@@ -68,7 +72,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 3}px 0`,
   },
   sidebarAboutBox: {
-    padding: theme.spacing.unit * 2,
+
     backgroundColor: theme.palette.grey[200],
   },
   sidebarSection: {
@@ -103,14 +107,18 @@ const sections = [
 
 const featuredPosts = [
   {
-    title: 'Tucker Marsden',
+    title: 'Tucker',
+    url:'./About/Tucker',
+    order: 1,
     picture: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/scooby-shaggy.jpg',
     date: 'Founder/Lead Engineering',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
   },
   {
-    title: 'Oliver Gillette',
+    title: 'Oliver',
+    url:'./About/Oliver',
+    order: 2,
     picture: 'https://pbs.twimg.com/profile_images/815785432248188928/cfYoIt5-_400x400.jpg',
     date: 'Engineering/Design',
     description:
@@ -121,6 +129,9 @@ const featuredPosts = [
 const social = ['GitHub', 'Instagram', 'LinkedIn'];
 
 function Blog(props) {
+
+  const transitionDelay = '250';
+
   const { classes } = props;
 
   return (
@@ -149,33 +160,34 @@ function Blog(props) {
           {/* End main featured post */}
           {/* Sub featured posts */}
           <Grid container spacing={40} className={classes.cardGrid}>
-            {featuredPosts.map(post => (
-              <Grid item key={post.title} xs={12} md={6}>
-                <Card className={classes.card}>
-                  <div className={classes.cardDetails}>
-                    <CardContent>
-                      <Typography component="h2" variant="h5">
-                        {post.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        {post.date}
-                      </Typography>
-                      <Typography variant="subtitle1" paragraph>
-                        {post.description}
-                      </Typography>
-                      <Typography variant="subtitle1" color="primary">
-                        Continue reading...
-                      </Typography>
-                    </CardContent>
-                  </div>
-                  <Hidden xsDown>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={post.picture}
-                      title="Image title"
-                    />
-                  </Hidden>
-                </Card>
+            {featuredPosts.map(person => (
+              <Grid item key={person.title} xs={12} md={6}>
+                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * person.order) + 'ms' ) }}>
+                    <Card className={classes.card}>
+                        <div className={classes.cardDetails}>
+                            <CardContent>
+                            <Typography component="h2" variant="h5">
+                                {person.title}
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                {person.date}
+                            </Typography>
+                            <Typography variant="subtitle1" paragraph>
+                                {person.description}
+                            </Typography>
+                            <Button href={person.url}>
+                                See more...
+                            </Button>
+                            </CardContent>
+                            </div>
+                            <CardMedia
+                            className={classes.cardMedia}
+                            image={person.picture}
+                            title="Image title"
+                            />
+                        </Card>
+                    </Zoom>
+                
               </Grid>
             ))}
           </Grid>
@@ -215,18 +227,13 @@ function Blog(props) {
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               <Paper elevation={0} className={classes.sidebarAboutBox}>
-
-
-
-                <Typography variant="h6" gutterBottom>
-                  About
-                </Typography>
-                <Typography>
-                  Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
-                  amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                </Typography>
+              <QuoteBlock 
+                quote="Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+                amet fermentum. Aenean lacinia bibendum nulla sed consectetur."
+                quotee="Test Guy"
+                company="test company"
+              />
               </Paper>            
-          
               <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
                 Social
               </Typography>

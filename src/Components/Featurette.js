@@ -51,7 +51,7 @@ function CenteredGrid(props) {
         </Grid>
         <Grid item xs={12} sm ={8}>
             <Paper className={classes.paper}> 
-              <Typography gutterBottom variant="h3">
+              <Typography gutterBottom variant="h4">
                 {props.header}
               </Typography>
               <Typography gutterBottom variant="subtitle1">

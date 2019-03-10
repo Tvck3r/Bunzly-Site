@@ -11,6 +11,8 @@ import Test from './pages/Test';
 import ContactUs from './pages/ContactUs';
 import About from './pages/About'
 import Page404 from './pages/404Page';
+import Tucker from './pages/Tucker';
+import Oliver from './pages/Oliver';
 
 class App extends Component {
   render() {
@@ -22,6 +24,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/ContactUs' component={ContactUs} />
             <Route exact path='/About' component={About} />
+            <Route exact path='/About/Tucker' component={Tucker} />
+            <Route exact path='/About/Oliver' component={Oliver} />
             <Route exact path='/test' component={Test} />
 
             <Route component={Page404} /> 

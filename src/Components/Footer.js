@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames'; //what does this do? 
 import PropTypes from 'prop-types'; //what does this do? 
 
-
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     footer: {
@@ -39,21 +39,83 @@ const Footer = (props) => {
     const footers = [
         {
           title: 'Company',
-          description: ['Team', 'History', 'Contact us', 'Locations'],
+          pages:[
+            {
+              title: 'About us',
+              url: './About',
+            },
+            {
+              title: 'Contact',
+              url: './ContactUs',
+            },
+            {
+              title: 'Locations',
+              url: './404Page',
+            },
+          ]
         },
         {
           title: 'Features',
-          description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+          pages:[
+            {
+              title: 'Cool stuff',
+              url: './404Page',
+            },
+            {
+              title: 'Random feature',
+              url: './404Page',
+            },
+            {
+              title: 'Team feature',
+              url: './404Page',
+            },
+            {
+              title: 'Developer stuff',
+              url: './test',
+            },
+            {
+              title: 'Another one',
+              url: './404Page',
+            },
+          ]
         },
         {
           title: 'Resources',
-          description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+          pages:[
+            {
+              title: 'Resource',
+              url: './404Page',
+            },
+            {
+              title: 'Resource name',
+              url: './404Page',
+            },
+            {
+              title: 'Another resource',
+              url: './404Page',
+            },
+            {
+              title: 'Final resource',
+              url: './404Page',
+            },
+          ]
         },
         {
           title: 'Legal',
-          description: ['Privacy policy', 'Terms of use'],
+          pages:[
+            {
+              title: 'Privacy policy',
+              url: './404Page',
+            },
+            {
+              title: 'Terms of use',
+              url: './404Page',
+            },
+          ]
         },
-      ];
+    ];
+
+    
 
 
       
@@ -64,13 +126,13 @@ const Footer = (props) => {
             <Grid container spacing={32} justify="space-evenly">
             {footers.map(footer => (
               <Grid item xs key={footer.title}>
-                <Typography variant="h6" color="textPrimary" gutterBottom>
+                <Typography  variant="h6" color="textPrimary" gutterBottom>
                   {footer.title}
                 </Typography>
-                {footer.description.map(desc => (
-                  <Typography key={desc} variant="subtitle1" color="textSecondary">
-                    {desc}
-                  </Typography>
+                {footer.pages.map(page => (
+                  <Button key={page.title} href={page.url}  variant="subtitle1" color="textSecondary">
+                    {page.title}
+                  </Button>
                 ))}
               </Grid>
             ))}

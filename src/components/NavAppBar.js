@@ -154,7 +154,7 @@ class NavAppBar extends React.Component {
         >
           <MenuItem onClick={this.handleCheckoutMenuClose}>Checkout</MenuItem>
           <MenuItem onClick={this.handleUsersMenuClose}>Users</MenuItem>
-          <MenuItem onClick={this.handleAboutMenuClose}>About us</MenuItem>
+          <MenuItem onClick={this.handleAboutMenuClose}>About</MenuItem>
         </Menu>
       );
 
@@ -167,7 +167,7 @@ class NavAppBar extends React.Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem onClick={this.handleContactUsMobileMenuSelection}>
-          Contact us
+          Contact
         </MenuItem>
         <MenuItem onClick={this.handleCheckOutMobileMenuSelection}>
           Checkout
@@ -176,7 +176,7 @@ class NavAppBar extends React.Component {
           Users
         </MenuItem>
         <MenuItem onClick={this.handleAboutMobileMenuClose}>
-          About us
+          About
         </MenuItem>
       </Menu>
     );
@@ -197,7 +197,7 @@ class NavAppBar extends React.Component {
 
             <div className={classes.sectionDesktop}>
               <Button color="inherit" href='/ContactUs' >
-                <p>Contact us </p>
+                <p>Contact</p>
               </Button>
               <Button 
                 aria-owns={isPagesMenuOpen ? 'material-appbar' : undefined}
