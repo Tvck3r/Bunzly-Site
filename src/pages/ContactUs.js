@@ -14,7 +14,7 @@ import EmailConfirmation from '../components/EmailConfirmation';
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
 
-
+//https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
 
 const styles = theme => ({
   appBar: {
@@ -93,6 +93,9 @@ class Checkout extends React.Component {
     });
   };
 
+  componentDidMount(){
+    this.myRef.current.scrollTo(0, 0);
+  }
   render() {
     const { classes } = this.props;
     const { activeStep } = this.state;

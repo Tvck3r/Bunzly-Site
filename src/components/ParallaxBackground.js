@@ -26,9 +26,9 @@ function CenteredGrid(props) {
 
 
   return (
-    <div className={classes.parallax}>
+    <Paper className={classes.parallax}>
 
-    </div>
+    </Paper>
   );
 }
 

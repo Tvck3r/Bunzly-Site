@@ -21,6 +21,9 @@ import QuoteBlock from '../components/QuoteBlock';
 import Zoom from '@material-ui/core/Zoom';
 
 
+//https://www.shopify.com/blog/how-to-write-an-about-us-page
+
+
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -137,6 +140,9 @@ function Blog(props) {
   return (
     <React.Fragment>
       <CssBaseline />
+      <p>
+      This is the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Sticky_positioning" target="_blank">demo from MDN</a>. CSS <code>position: sticky</code> is supported in Firefox, Safari, and Chrome Canary (56+).
+    </p>
       <div className={classes.layout}>
         <NavAppBar/>
 
@@ -208,20 +214,7 @@ function Blog(props) {
               Keep in mind that writing your actual copy in the first person (e.g. I, We) will help build a more personal connection with your audience. 
               Your About Us page is About YOU, so don't shy away from that.
               </p>
-
-
-
-
-
-
-
-
               </Typography>
-             {/*  {posts.map(post => (
-                <Markdown className={classes.markdown} key={post.substring(0, 40)}>
-                  {post}
-                </Markdown>
-              ))} */}
             </Grid>
             {/* End main content */}
             {/* Sidebar */}

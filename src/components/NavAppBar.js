@@ -22,8 +22,9 @@ import { NavLink, Redirect} from 'react-router-dom'
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    position:'sticky'
+    //width: '100%',
+    //position:'sticky',
+    //top:'1px',
   },
   grow: {
     flexGrow: 1,
@@ -61,6 +62,7 @@ class NavAppBar extends React.Component {
     pagesAnchorEl: null,
     mobileMoreAnchorEl: null,
     navValue:null,
+    sticky:false
   };
    
   handlePagesMenuOpen = event => {
@@ -183,7 +185,7 @@ class NavAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar color="default">
+        <AppBar  position="fixed" color="default">
           <Toolbar>
             <IconButton href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
               <HomeIcon />
