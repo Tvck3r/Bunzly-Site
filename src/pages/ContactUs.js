@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material-ui Components
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -8,11 +10,14 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+// Components
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
+
 
 //https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
 

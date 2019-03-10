@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Footer from '../components/Footer'
-import Featurette from '../components/Featurette';
-import NavAppBar from '../components/NavAppBar';
+
+// Material-ui Components
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from  '@material-ui/core/Grid';
+
+// Components
+import Footer from '../components/Footer'
+import Featurette from '../components/Featurette';
+import NavAppBar from '../components/NavAppBar';
+
 
 const styles = theme => ({
   '@global': {
