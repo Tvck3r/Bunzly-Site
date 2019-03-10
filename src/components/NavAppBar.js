@@ -82,28 +82,47 @@ class NavAppBar extends React.Component {
 
 
   handleContactUsMobileMenuSelection = event => {
-    console.log("contact-us-nav was clicked");
+    console.log("contact-us-mobile-nav was clicked");
     this.handleMobileMenuClose();
     this.setState({ navValue:'contact-us'});
   }
 
   handleCheckOutMobileMenuSelection = event => {
-    console.log("checkout-nav was clicked");
+    console.log("checkout-mobile-nav was clicked");
     this.handleMobileMenuClose();
     this.setState({ navValue:'checkout'});
   }
 
   handleAboutMobileMenuSelection = event => {
-    console.log("about-nav was clicked");
+    console.log("about-mobile-nav was clicked");
     this.handleMobileMenuClose();
     this.setState({ navValue:'about'});
   }
 
   handleUsersMobileMenuSelection = event => {
-    console.log("users-nav was clicked");
+    console.log("users-mobile-nav was clicked");
     this.handleMobileMenuClose();
     this.setState({ navValue:'users'});
   }
+
+  handleCheckoutMenuClose = event => {
+    console.log("contact-us-nav was clicked");
+    this.handlePagesMenuClose();
+    this.setState({ navValue:'contact-us'});
+  }
+
+  handleCheckOutMobileMenuSelection = event => {
+    console.log("checkout-nav was clicked");
+    this.handlePagesMenuClose();
+    this.setState({ navValue:'checkout'});
+  }
+
+  handleAboutMenuClose = event => {
+    console.log("about-nav was clicked");
+    this.handlePagesMenuClose();
+    this.setState({ navValue:'about'});
+  }
+
 
   render() {
     const { pagesAnchorEl, mobileMoreAnchorEl } = this.state;
@@ -133,10 +152,9 @@ class NavAppBar extends React.Component {
           open={isPagesMenuOpen}
           onClose={this.handlePagesMenuClose}
         >
-          <MenuItem onClick={this.handlePagesMenuClose}>Checkot</MenuItem>
-          <MenuItem onClick={this.handlePagesMenuClose}>Usrs</MenuItem>
-          
-          <MenuItem onClick={this.handlePagesMenuClose}>abtus</MenuItem>
+          <MenuItem onClick={this.handleCheckoutMenuClose}>Checkout</MenuItem>
+          <MenuItem onClick={this.handleUsersMenuClose}>Users</MenuItem>
+          <MenuItem onClick={this.handleAboutMenuClose}>About us</MenuItem>
         </Menu>
       );
 
@@ -149,15 +167,15 @@ class NavAppBar extends React.Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem onClick={this.handleContactUsMobileMenuSelection}>
-          Contact Us
+          Contact us
         </MenuItem>
         <MenuItem onClick={this.handleCheckOutMobileMenuSelection}>
           Checkout
         </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
+        <MenuItem onClick={this.handleUsersMobileMenuClose}>
           Users
         </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
+        <MenuItem onClick={this.handleAboutMobileMenuClose}>
           About us
         </MenuItem>
       </Menu>

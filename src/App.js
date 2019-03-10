@@ -9,6 +9,7 @@ import {
 import Home from './pages/Home';
 import Test from './pages/Test';
 import ContactUs from './pages/ContactUs';
+import About from './pages/About'
 import Page404 from './pages/404Page';
 
 class App extends Component {
@@ -20,7 +21,9 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/ContactUs' component={ContactUs} />
+            <Route exact path='/About' component={About} />
             <Route exact path='/test' component={Test} />
+
             <Route component={Page404} /> 
           </Switch>
           

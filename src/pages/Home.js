@@ -23,6 +23,7 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
+    paddingTop: `${theme.spacing.unit * 12}px`,
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up('lg')]: {
@@ -31,25 +32,6 @@ const styles = theme => ({
       marginRight: 'auto',
     },
   }, 
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 12}px`,
-  },
-  cardHeader: {
-    backgroundColor: theme.palette.grey[200],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing.unit * 2,
-  },
-  cardActions: {
-    [theme.breakpoints.up('sm')]: {
-      paddingBottom: theme.spacing.unit * 2,
-    },
-  },
 });
 
 function Home(props) {
