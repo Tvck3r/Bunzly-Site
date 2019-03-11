@@ -72,25 +72,6 @@ const styles = theme => ({
 
 const steps = ['Tell us about yourself', 'Craft message', 'Review and send'];
 
-/* getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <UserSignup 
-        changed={this.firstNameChangeHandler}
-      />;
-    case 1:
-      return <CraftMessage />;
-    case 2:
-      return <EmailConfirmation
-                firstName={this.state.firstName} 
-                email={this.state.email} 
-                message={this.state.message}/>;
-    default:
-      throw new Error('Unknown step');
-  }
-} */
-
-
 class Checkout extends React.Component {
 
   /* constructor (props) {
@@ -99,14 +80,13 @@ class Checkout extends React.Component {
   } */
   state  = {
     activeStep: 0,
-    firstName:'tucker',
+    firstName:null,
     lastName:null,
     email:null,
     phoneNumber:null,
     city:null,
     stateProvReg:null,
-    message:null,
-    data: 'test'
+    message:null
   }
   
   getStepContent(step) {
