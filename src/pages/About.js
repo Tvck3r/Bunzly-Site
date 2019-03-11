@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material-ui Components
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,12 +16,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Zoom from '@material-ui/core/Zoom';
+
+// Components
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
 import QuoteBlock from '../components/QuoteBlock';
 //import Markdown from '../components/Markdown'
-import Zoom from '@material-ui/core/Zoom';
-
 
 //https://www.shopify.com/blog/how-to-write-an-about-us-page
 

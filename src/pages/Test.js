@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+
+
+// Material-ui Components
 import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+// Components
 import QuoteBlock from '../components/QuoteBlock'
 import ParallaxBackground from '../components/ParallaxBackground';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 const styles = theme => ({
