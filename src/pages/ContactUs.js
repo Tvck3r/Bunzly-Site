@@ -10,8 +10,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
