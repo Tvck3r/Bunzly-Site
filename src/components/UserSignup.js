@@ -7,7 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 
 
-function AddressForm() {
+const AddressForm = (props) => {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -17,16 +17,19 @@ function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            value={props.firstName}
+            onChange={props.firstNameChanged} 
             id="firstName"
             name="firstName"
-            label="First name"
+            label="First Name"
             fullWidth
             autoComplete="fname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
+            value={props.lastName}
+            onChange={props.lastNameChanged} 
             id="lastName"
             name="lastName"
             label="Last name"
@@ -36,6 +39,8 @@ function AddressForm() {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            value={props.email}
+            onChange={props.emailChanged} 
             required
             id="email"
             name="email"
@@ -45,7 +50,8 @@ function AddressForm() {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            
+            value={props.phone}
+            onChange={props.phoneChanged} 
             id="phone"
             name="phone"
             label="Phone Number"
@@ -54,7 +60,8 @@ function AddressForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            
+            value={props.city}
+            onChange={props.cityChanged} 
             id="city"
             name="city"
             label="City"
@@ -63,7 +70,13 @@ function AddressForm() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+          <TextField 
+          value={props.region}
+          onChange={props.regionChanged} 
+          id="region" 
+          name="region" 
+          label="State/Province/Region" 
+          fullWidth />
         </Grid>
       </Grid>
     </React.Fragment>

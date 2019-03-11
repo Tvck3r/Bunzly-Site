@@ -31,8 +31,6 @@ const styles = theme => ({
   },
   appBar: {
     position: 'sticky',
-
-
   },
   toolbarTitle: {
     flex: 1,
@@ -46,14 +44,14 @@ const styles = theme => ({
   callToAction:{
     //margin: 'auto',
     paddingTop: '20px',
-    top: '30%',
+    top: '40%',
     left:'0',
     right: '0',
     marginLeft: 'auto',
     marginRight: 'auto',
 
     position:'absolute',
-    width:'400px',
+    width:'500px',
     opacity:'.85',
   },
   plxCenter:{
@@ -114,9 +112,9 @@ class Home extends Component {
           <Paper className={classes.parallax}>
           <div className={classes.plxCenter} >
             <Paper  className={classes.callToAction}>
-                <Typography component="h1" variant="h3" gutterBottom align="center">
-                  Upgrade your apps today!
-                  <Button onClick={this.handleScrollSelection}>Click to see our services!</Button>
+                <Typography  variant="h2" gutterBottom align="center">
+                   
+                  <Button onClick={this.handleScrollSelection}>Click to see services!</Button>
                 </Typography >              
             </Paper>
           </div>
@@ -125,22 +123,24 @@ class Home extends Component {
           </Paper>
           
 
-
+          <NavAppBar></NavAppBar>
           <div  ref={this.myRef}></div>
           
      {/*    <NavAppBar/>  */}
         <main className={classes.layout}>
-          <Divider/>
-          <br/>
+          {/* <Divider/>
+          <br/> */}
 
           <div  className={classes.heroContent}>
+          <div  ref={this.myRef}></div>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Our Services
+              Services
             </Typography>
-            <Typography variant="h6" className={classes.strategyDetails} align="center" color="textSecondary" component="p">
+
+            {/* <Typography variant="h6" className={classes.strategyDetails} align="center" color="textSecondary" component="p">
               Quickly build an effective pricing table for your potential customers with this layout.
               It&apos;s built with default Material-UI components with little customization.
-            </Typography>
+            </Typography> */}
           </div>
 
           <Featurette 

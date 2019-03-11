@@ -36,6 +36,10 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  appBar:{
+    top: 'auto',
+    bottom: 0,
+  },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -185,7 +189,7 @@ class NavAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar  position="fixed" color="default">
+        <AppBar className={classes.appBar}  position="fixed" color="default">
           <Toolbar>
             <IconButton href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
               <HomeIcon />

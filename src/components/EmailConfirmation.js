@@ -14,11 +14,11 @@ const EmailConfirmation = (props) => {
       </Typography>
 
       <Typography variant="subtitle1" gutterBottom>
-        I don't know how to make this work but it is something to do eventually
+        {props.message}
       </Typography>
 
       <Typography variant="subtitle2" gutterBottom>
-        from: email@address.com
+        from: {props.firstName}
       </Typography>
 
 

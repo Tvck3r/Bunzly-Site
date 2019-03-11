@@ -8,13 +8,28 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import cyan from '@material-ui/core/colors/cyan';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 
-//https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
+//https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: lightBlue[700] }, // Purple and green play nicely together.
+    secondary: { main: cyan[700] }, // This is just green.A700 as hex.
+  },
+  typography: { useNextVariants: true },
+});
+
 
 const styles = theme => ({
   appBar: {
@@ -57,28 +72,104 @@ const styles = theme => ({
 
 const steps = ['Tell us about yourself', 'Craft message', 'Review and send'];
 
-function getStepContent(step) {
+/* getStepContent(step) {
   switch (step) {
     case 0:
-      return <UserSignup />;
+      return <UserSignup 
+        changed={this.firstNameChangeHandler}
+      />;
     case 1:
       return <CraftMessage />;
     case 2:
-      return <EmailConfirmation />;
+      return <EmailConfirmation
+                firstName={this.state.firstName} 
+                email={this.state.email} 
+                message={this.state.message}/>;
     default:
       throw new Error('Unknown step');
   }
-}
+} */
+
 
 class Checkout extends React.Component {
-  state = {
+
+  /* constructor (props) {
+    super(props)
+    this.
+  } */
+  state  = {
     activeStep: 0,
-  };
+    firstName:'tucker',
+    lastName:null,
+    email:null,
+    phoneNumber:null,
+    city:null,
+    stateProvReg:null,
+    message:null,
+    data: 'test'
+  }
+  
+  getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <UserSignup 
+          firstName={this.state.firstName}
+          firstNameChanged={this.firstNameChangeHandler}
+
+          lastName={this.state.lastName}
+          lastNameChanged={this.lastNameChangeHandler}
+
+          email={this.state.email}
+          emailChanged={this.emailChangeHandler}
+
+          phone={this.state.phone}
+          phoneChanged={this.phoneChangeHandler}
+
+          city={this.state.city}
+          cityChanged={this.cityChangeHandler}
+
+          region={this.state.region}
+          regionChanged={this.regionChangeHandler}
+
+        />;
+      case 1:
+        return <CraftMessage
+          message={this.state.message}
+          messageChanged={this.messageChangeHandler}
+         />;
+      case 2:
+        return <EmailConfirmation
+                  firstName={this.state.firstName} 
+                  email={this.state.email} 
+                  message={this.state.message}/>;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+
+  firstNameChangeHandler = (event) => {this.setState({firstName:event.target.value})}
+  lastNameChangeHandler = (event) => {this.setState({lastName:event.target.value})}
+  emailChangeHandler = (event) => {this.setState({email:event.target.value})}
+  phoneChangeHandler = (event) => {this.setState({phone:event.target.value})}
+  cityChangeHandler = (event) => {this.setState({city:event.target.value})}
+  regionChangeHandler = (event) => {this.setState({region:event.target.value})}
+  messageChangeHandler = (event) => {this.setState({message:event.target.value})}  
+
+  
 
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
     }));
+
+    if(this.state.activeStep === 2){
+      alert("Send email message:" 
+      + this.state.message + 
+      " to:" + this.state.firstName + " " + this.state.lastName + 
+      " @:" + this.state.email +
+      " #:" + this.state.phone + 
+      " @" + this.state.city + ", " + this.state.region)
+    }
   };
 
   handleBack = () => {
@@ -93,17 +184,23 @@ class Checkout extends React.Component {
     });
   };
 
+  //prebuilt method - calls when rerendering
   componentDidMount(){
-    this.myRef.current.scrollTo(0, 0);
+    window.scrollTo(0,0);
   }
+
+  
   render() {
     const { classes } = this.props;
     const { activeStep } = this.state;
 
     return (
+      <MuiThemeProvider theme={theme}>
+     
       <React.Fragment>
         <CssBaseline />
         <NavAppBar/>
+        <Button>TEST</Button>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
@@ -132,7 +229,7 @@ class Checkout extends React.Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {getStepContent(activeStep)}
+                  {this.getStepContent(activeStep)}
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
                       <Button onClick={this.handleBack} className={classes.button}>
@@ -141,7 +238,7 @@ class Checkout extends React.Component {
                     )}
                     <Button
                       variant="contained"
-                        //color="secondary"
+                        color="primary"
                       onClick={this.handleNext}
                       className={classes.button}
                     >
@@ -155,6 +252,7 @@ class Checkout extends React.Component {
         </main>
         <Footer/>
       </React.Fragment>
+      </MuiThemeProvider>
     );
   }
 }
@@ -164,3 +262,4 @@ Checkout.propTypes = {
 };
 
 export default withStyles(styles)(Checkout);
+

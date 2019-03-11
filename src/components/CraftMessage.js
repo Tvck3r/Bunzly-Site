@@ -5,14 +5,24 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function CraftMessage() {
+
+const CraftMessage = (props) => {
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Craft message
       </Typography>
       <Grid container spacing={24}>
-      <TextField fullWidth />
+      <TextField
+          required
+          value={props.message}
+          onChange={props.messageChanged} 
+          id="message"
+          name="message"
+          multiline
+          fullWidth
+        />
       </Grid>
     </React.Fragment>
   );
