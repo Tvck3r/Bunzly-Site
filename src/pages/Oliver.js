@@ -7,10 +7,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 
+
+
 // Components
-import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer'
 import { Paper, Typography } from '@material-ui/core';
+import ResumeTab from '../components/ResumeTab';
 
 const styles = theme => ({
   layout: {
@@ -29,8 +31,8 @@ const styles = theme => ({
     width: 200,
     height: 200,
     },
-  resHead: {
-
+  spacing: {
+    margin: 20,
   }
 });
 
@@ -58,6 +60,9 @@ function Oliver(props) {
           <Typography component="h2" variant="h6">
             6512 Springfield Dr. Charlotte NC 28212  ||  843-422-6842  ||  olivergillette@gmail.com
           </Typography>
+        </Grid>
+        <Grid className={classes.spacing}>
+            <ResumeTab />   
         </Grid>
       </div>
       <Footer />
