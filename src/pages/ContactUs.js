@@ -10,14 +10,17 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import cyan from '@material-ui/core/colors/cyan';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+
+// Components
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import cyan from '@material-ui/core/colors/cyan';
-import lightBlue from '@material-ui/core/colors/lightBlue';
+
 
 //https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
 
