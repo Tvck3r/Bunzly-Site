@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 // Components
-
+import Footer from '../components/Footer'
 
 
 const styles = theme => ({
@@ -35,6 +35,7 @@ function Tucker(props) {
         <main>
           
         </main>
+        <Footer />
       </div>
     </React.Fragment>
   );
