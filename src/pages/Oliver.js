@@ -6,6 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Zoom from '@material-ui/core/Zoom';
 
 // Components
 import NavAppBar from '../components/NavAppBar';
@@ -13,30 +18,55 @@ import Footer from '../components/Footer'
 import { Paper, Typography } from '@material-ui/core';
 
 const styles = theme => ({
-  layout: {
-    width: 'auto',
-    paddingTop: `${theme.spacing.unit * 3}px`,
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    layout: {
+        width: 'auto',
+        paddingTop: `${theme.spacing.unit * 3}px`,
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3,
+        [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+        width: 1100,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        },
     },
-  },
-  bigAvatar: {
-    margin: 10,
-    width: 200,
-    height: 200,
+    bigAvatar: {
+        margin: 10,
+        width: 200,
+        height: 200,
     },
-  resHead: {
-
-  }
+    card: {
+        display: 'flex',
+    },
+      cardDetails: {
+        flex: 1,
+    },
+      cardMedia: {
+        width: 160,
+    },
 });
 
+const featuredPosts = [
+    {
+      title: 'Achievments',
+      order: 1,
+      picture: '',
+      date: 'here they are',
+      description:
+        '',
+    },
+    {
+      title: 'Oliver',
+      order: 2,
+      picture: 'https://pbs.twimg.com/profile_images/815785432248188928/cfYoIt5-_400x400.jpg',
+      date: 'Engineering/Design',
+      description:
+        'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    },
+  ];
 
 function Oliver(props) {
-  const { classes } = props;
+    const transitionDelay = '250';
+    const { classes } = props;
 
   return (
     <React.Fragment>
@@ -59,6 +89,36 @@ function Oliver(props) {
             6512 Springfield Dr. Charlotte NC 28212  ||  843-422-6842  ||  olivergillette@gmail.com
           </Typography>
         </Grid>
+        <Grid container spacing={40} className={classes.cardGrid}>
+            {featuredPosts.map(person => (
+              <Grid item key={person.title} xs={12} md={12}>
+                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * person.order) + 'ms' ) }}>
+                    <Card className={classes.card}>
+                        <div className={classes.cardDetails}>
+                            <CardContent>
+                            <Typography component="h2" variant="h5">
+                                {person.title}
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                {person.date}
+                            </Typography>
+                            <Typography variant="subtitle1" paragraph>
+                                {person.description}
+                            </Typography>
+                            </CardContent>
+                            </div>
+                            <CardMedia
+                            className={classes.cardMedia}
+                            image={person.picture}
+                            title="Image title"
+                            />
+                        </Card>
+                    </Zoom>
+                
+              </Grid>
+            ))}
+          </Grid>
+
       </div>
       <Footer />
     </React.Fragment>
