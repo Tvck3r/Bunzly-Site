@@ -13,10 +13,12 @@ import Button from '@material-ui/core/Button';
 import Zoom from '@material-ui/core/Zoom';
 import Divider from '@material-ui/core/Divider';
 
+
+
 // Components
-import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer'
 import { Paper, Typography } from '@material-ui/core';
+import ResumeTab from '../components/ResumeTab';
 
 const styles = theme => ({
     layout: {
@@ -35,6 +37,7 @@ const styles = theme => ({
         width: 200,
         height: 200,
     },
+
     card: {
         display: 'flex',
     },
@@ -53,6 +56,11 @@ const styles = theme => ({
         marginRight: 0,
         marginBottom: 10,
       },
+
+  spacing: {
+    margin: 20,
+  }
+
 });
 
 const resTop = [
@@ -164,6 +172,7 @@ function Oliver(props) {
             1234 MrRobot Dr. HackerVille, NY 10101  ||  062-420-1532  ||  olivergillette@gmail.com
           </Typography>
         </Grid>
+
         <Divider />
         <Grid container spacing={40} className={classes.cardGrid}>
             {jobListings.map(person => (
@@ -200,7 +209,6 @@ function Oliver(props) {
               </Grid>
             ))}
           </Grid>
-
       </div>
       <Footer />
     </React.Fragment>
