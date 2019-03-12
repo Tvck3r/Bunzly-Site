@@ -113,7 +113,6 @@ class Checkout extends React.Component {
 
           region={this.state.region}
           regionChanged={this.regionChangeHandler}
-
         />;
       case 1:
         return <CraftMessage
