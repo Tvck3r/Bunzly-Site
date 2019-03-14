@@ -32,9 +32,17 @@ const styles = theme => ({
 });
 
 
+
+  
+
+
 const Footer = (props) => {
 
     const { classes } = props;
+
+
+    
+
 
     const footers = [
         {
@@ -42,11 +50,11 @@ const Footer = (props) => {
           pages:[
             {
               title: 'About us',
-              url: './About',
+              pageFunction: props.handleAboutPage,
             },
             {
               title: 'Contact',
-              url: './ContactUs',
+              pageFunction: props.handleContactPage,
             },
             {
               title: 'Locations',
@@ -130,7 +138,10 @@ const Footer = (props) => {
                   {footer.title}
                 </Typography>
                 {footer.pages.map(page => (
-                  <Button key={page.title} href={page.url}  variant="subtitle1" color="textSecondary">
+                  <Button 
+                    key={page.title} 
+                    onClick={page.pageFunction}  
+                    >
                     {page.title}
                   </Button>
                 ))}

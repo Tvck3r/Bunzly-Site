@@ -11,8 +11,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import cyan from '@material-ui/core/colors/cyan';
-import lightBlue from '@material-ui/core/colors/lightBlue';
+
 
 // Components
 import UserSignup from '../components/UserSignup';
@@ -25,13 +24,7 @@ import Footer from '../components/Footer';
 //https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
 
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: lightBlue[700] }, // Purple and green play nicely together.
-    secondary: { main: cyan[700] }, // This is just green.A700 as hex.
-  },
-  typography: { useNextVariants: true },
-});
+
 
 
 const styles = theme => ({
@@ -120,8 +113,7 @@ class Checkout extends React.Component {
           messageChanged={this.messageChangeHandler}
          />;
       case 2:
-        return <EmailConfirmation
-                  firstName={this.state.firstName} 
+        return <EmailConfirmation 
                   email={this.state.email} 
                   message={this.state.message}/>;
       default:
@@ -174,20 +166,19 @@ class Checkout extends React.Component {
   
   render() {
     const { classes } = this.props;
-    const { activeStep } = this.state;
+    const activeStep  = this.state.activeStep;
 
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={this.theme}>
      
       <React.Fragment>
         <CssBaseline />
-        <NavAppBar/>
-        <Button>TEST</Button>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
               Contact us
             </Typography>
+
 
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
@@ -199,11 +190,12 @@ class Checkout extends React.Component {
               ))}
             </Stepper>
 
+
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Typography variant="h5" gutterBottom>
-                    Thank you for your message.
+                    Thank you for your message, {this.state.firstName}!
                   </Typography>
                   <Typography variant="subtitle1">
                         A staff member will reach out as soon as possible.
@@ -211,7 +203,12 @@ class Checkout extends React.Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
+
+
                   {this.getStepContent(activeStep)}
+
+
+
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
                       <Button onClick={this.handleBack} className={classes.button}>
@@ -220,19 +217,23 @@ class Checkout extends React.Component {
                     )}
                     <Button
                       variant="contained"
-                        color="primary"
+                        color="secondary"
                       onClick={this.handleNext}
                       className={classes.button}
                     >
                       {activeStep === steps.length - 1 ? 'Send Email' : 'Next'}
                     </Button>
                   </div>
+
                 </React.Fragment>
               )}
             </React.Fragment>
+
+
+
+
           </Paper>
         </main>
-        <Footer/>
       </React.Fragment>
       </MuiThemeProvider>
     );

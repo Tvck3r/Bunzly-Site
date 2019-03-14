@@ -33,7 +33,7 @@ function Tucker(props) {
       <CssBaseline />
       <div className={classes.layout}>
         <main>
-          
+          TUCK PAGE
         </main>
         <Footer />
       </div>

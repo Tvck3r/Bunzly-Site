@@ -10,8 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import { NavLink, Redirect} from 'react-router-dom'
+import {  Redirect} from 'react-router-dom'
 
 //import SearchIcon from '@material-ui/icons/Search';
 //import InputBase from '@material-ui/core/InputBase';
@@ -21,12 +20,7 @@ import { NavLink, Redirect} from 'react-router-dom'
 //https://material-ui.com/demos/app-bar/
 
 const styles = theme => ({
-  root: {
-    //width: '100%',
-    //position:'sticky',
-    //top:'1px',
-  },
-  grow: {
+   grow: {
     flexGrow: 1,
   },
   btnStyle:{
@@ -35,10 +29,6 @@ const styles = theme => ({
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
-  },
-  appBar:{
-    top: 'auto',
-    bottom: 0,
   },
   title: {
     display: 'none',
@@ -137,6 +127,7 @@ class NavAppBar extends React.Component {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     if (this.state.navValue === 'contact-us') {
+
       return <Redirect to='/ContactUs' />
     }
     if (this.state.navValue === 'checkout') {
@@ -189,7 +180,7 @@ class NavAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}  position="fixed" color="default">
+        <AppBar className={classes.appBar} position={this.props.appBarState} color="default">
           <Toolbar>
             <IconButton href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
               <HomeIcon />

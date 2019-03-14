@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 
 // Material-ui Components
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from  '@material-ui/core/Grid';
-
 // Components
 import Footer from '../components/Footer'
 import Featurette from '../components/Featurette';
@@ -19,6 +16,7 @@ const styles = theme => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+     
     },
   },
   parallax : {
@@ -63,6 +61,7 @@ const styles = theme => ({
     width:'100%',
   },
   layout: {
+    
     width: 'auto',
     paddingTop: `${theme.spacing.unit * 12}px`,
     marginLeft: theme.spacing.unit * 3,
@@ -72,6 +71,7 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+
   }, 
   mainFeaturedPostContent: {
     //padding: `${theme.spacing.unit * 25}px`,
@@ -87,65 +87,35 @@ const styles = theme => ({
   },
 });
 
-class Home extends Component {
 
-  componentDidMount() {
-   
-  }
 
-  handleScrollSelection = event => {
+const Home = (props) => {
+
+ /*  handleScrollSelection = event => {
     console.log("scroll was clicked");
     this.scrollToMyRef();
-  }
+  } */
 
-  scrollToMyRef = () => window.scrollTo({
+ /*  scrollToMyRef = () => window.scrollTo({
     top: this.myRef.current.offsetTop,
     bottom: this.myRef.current.offsetBottom,
     behavior: 'smooth'
   })
-
-  constructor(props) {
+ */
+/*   constructor(props) {
     super(props);
     this.myRef = React.createRef();
-  }
+  } */
 
-  render(){
-    const { classes } = this.props;
+  
+    const { classes } = props;
     return (
-      <React.Fragment>
-                    
-          <Paper className={classes.parallax}>
-          <div className={classes.plxCenter} >
-            <Paper  className={classes.callToAction}>
-                <Typography  variant="h2" gutterBottom align="center">
-                   
-                  <Button onClick={this.handleScrollSelection}>Click to see services!</Button>
-                </Typography >              
-            </Paper>
-          </div>
-          
-            
-          </Paper>
-          
-
-          <NavAppBar></NavAppBar>
-          <div  ref={this.myRef}></div>
-          
-     {/*    <NavAppBar/>  */}
+      <React.Fragment>     
         <main className={classes.layout}>
-          {/* <Divider/>
-          <br/> */}
-
           <div  className={classes.heroContent}>
-          <div  ref={this.myRef}></div>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Services
             </Typography>
-
-            {/* <Typography variant="h6" className={classes.strategyDetails} align="center" color="textSecondary" component="p">
-              Quickly build an effective pricing table for your potential customers with this layout.
-              It&apos;s built with default Material-UI components with little customization.
-            </Typography> */}
           </div>
 
           <Featurette 
@@ -167,16 +137,8 @@ class Home extends Component {
             src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
           </Featurette>
         </main> 
-        <Footer/>
       </React.Fragment>
-    );
-
-  
-
-  
-
- 
-  }
+    );  
 }
 
 Home.propTypes = {
