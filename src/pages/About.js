@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import cyan from '@material-ui/core/colors/cyan';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+
 // Material-ui Components
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -98,156 +101,150 @@ const styles = theme => ({
 
 });
 
-const sections = [
-  'Technology',
-  'Design',
-  'Culture',
-  'Business',
-  'Politics',
-  'Opinion',
-  'Science',
-  'Health',
-  'Style',
-  'Travel',
-];
 
-const featuredPosts = [
-  {
-    title: 'Tucker',
-    url:'./About/Tucker',
-    order: 1,
-    picture: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/scooby-shaggy.jpg',
-    date: 'Founder/Lead Engineering',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-  },
-  {
-    title: 'Oliver',
-    url:'./About/Oliver',
-    order: 2,
-    picture: 'https://pbs.twimg.com/profile_images/815785432248188928/cfYoIt5-_400x400.jpg',
-    date: 'Engineering/Design',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-  },
-];
+class About extends React.Component {
+   //prebuilt method - calls when rerendering
+   componentDidMount(){
+    window.scrollTo(0,0);
+  } 
+  
+  render() { 
+     
+    const social = ['GitHub', 'Instagram', 'LinkedIn'];
+  
+    const transitionDelay = '250';
 
-const social = ['GitHub', 'Instagram', 'LinkedIn'];
+    const { classes } = this.props;
+  
+    const featuredPosts = [
+      {
+        title: 'Tucker',
+        pageHandler: this.props.handleTuckPage,
+        order: 1,
+        picture: 'https://a1cf74336522e87f135f-2f21ace9a6cf0052456644b80fa06d4f.ssl.cf2.rackcdn.com/images/characters/scooby-shaggy.jpg',
+        date: 'Founder/Lead Engineering',
+        description:
+          'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      },
+      {
+        title: 'Oliver',
+        pageHandler: this.props.handleOliverPage,
+        order: 2,
+        picture: 'https://pbs.twimg.com/profile_images/815785432248188928/cfYoIt5-_400x400.jpg',
+        date: 'Engineering/Design',
+        description:
+          'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      },
+    ];
+    
+    
 
-function Blog(props) {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+      
+        <div className={classes.layout}>
+        
 
-  const transitionDelay = '250';
-
-  const { classes } = props;
-
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <p>
-      This is the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#Sticky_positioning" target="_blank">demo from MDN</a>. CSS <code>position: sticky</code> is supported in Firefox, Safari, and Chrome Canary (56+).
-    </p>
-      <div className={classes.layout}>
-        <NavAppBar/>
-
-        <main>
-          {/* Main featured post */}
-          <Paper className={classes.mainFeaturedPost}>
-            <Grid container>
-              <Grid item md={6}>
-                <div className={classes.mainFeaturedPostContent}>
-                  <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                    Bunzly.io
-                  </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
-                    Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what&apos;s most interesting in this post&apos;s contents…
-                  </Typography>
-                </div>
+          <main>
+            {/* Main featured post */}
+            <Paper className={classes.mainFeaturedPost}>
+              <Grid container>
+                <Grid item md={6}>
+                  <div className={classes.mainFeaturedPostContent}>
+                    <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                      Bunzly.io
+                    </Typography>
+                    <Typography variant="h5" color="inherit" paragraph>
+                      Multiple lines of text that form the lede, informing new readers quickly and
+                      efficiently about what&apos;s most interesting in this post&apos;s contents…
+                    </Typography>
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-          {/* End main featured post */}
-          {/* Sub featured posts */}
-          <Grid container spacing={40} className={classes.cardGrid}>
-            {featuredPosts.map(person => (
-              <Grid item key={person.title} xs={12} md={6}>
-                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * person.order) + 'ms' ) }}>
-                    <Card className={classes.card}>
-                        <div className={classes.cardDetails}>
-                            <CardContent>
-                            <Typography component="h2" variant="h5">
-                                {person.title}
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                {person.date}
-                            </Typography>
-                            <Typography variant="subtitle1" paragraph>
-                                {person.description}
-                            </Typography>
-                            <Button href={person.url}>
-                                See more...
-                            </Button>
-                            </CardContent>
-                            </div>
-                            <CardMedia
-                            className={classes.cardMedia}
-                            image={person.picture}
-                            title="Image title"
-                            />
-                        </Card>
-                    </Zoom>
-                
-              </Grid>
-            ))}
-          </Grid>
-          {/* End sub featured posts */}
-          <Grid container spacing={40} className={classes.mainGrid}>
-            {/* Main content */}
-            <Grid item xs={12} md={8}>
-              <Typography variant="h6" gutterBottom>
-                About Us page story template
-              </Typography>
-              <Divider />
-              <Typography variant="h6" gutterBottom>
-              <p>[FOUNDERS] started [COMPANY] because [EXPLAIN PROBLEM IN YOUR INDUSTRY].</p>
-              <p>That's why [DESCRIBE JOURNEY TO SOLUTION].</p>
-              <p>Along the way, [SHARE MILESTONES AND WINS].</p>
-              <p>We want to be [STATE YOUR MISSION GOING FORWARD].</p>
-              <p>
-              Keep in mind that writing your actual copy in the first person (e.g. I, We) will help build a more personal connection with your audience. 
-              Your About Us page is About YOU, so don't shy away from that.
-              </p>
-              </Typography>
-            </Grid>
-            {/* End main content */}
-            {/* Sidebar */}
-            <Grid item xs={12} md={4}>
-              <Paper elevation={0} className={classes.sidebarAboutBox}>
-              <QuoteBlock 
-                quote="Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
-                amet fermentum. Aenean lacinia bibendum nulla sed consectetur."
-                quotee="Test Guy"
-                company="test company"
-              />
-              </Paper>            
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                Social
-              </Typography>
-              {social.map(network => (
-                <Button key={network}>{network}</Button>
+            </Paper>
+            {/* End main featured post */}
+            {/* Sub featured posts */}
+            <Grid container spacing={40} className={classes.cardGrid}>
+              {featuredPosts.map(person => (
+                <Grid item key={person.title} xs={12} md={6}>
+                  <Zoom in={true} style={{ transitionDelay: ((transitionDelay * person.order) + 'ms' ) }}>
+                      <Card className={classes.card}>
+                          <div className={classes.cardDetails}>
+                              <CardContent>
+                              <Typography component="h2" variant="h5">
+                                  {person.title}
+                              </Typography>
+                              <Typography variant="subtitle1" color="textSecondary">
+                                  {person.date}
+                              </Typography>
+                              <Typography variant="subtitle1" paragraph>
+                                  {person.description}
+                              </Typography>
+                              <Button onClick={person.pageHandler}>
+                                  See more...
+                              </Button>
+                              </CardContent>
+                              </div>
+                              <CardMedia
+                              className={classes.cardMedia}
+                              image={person.picture}
+                              title="Image title"
+                              />
+                          </Card>
+                      </Zoom>
+                  
+                </Grid>
               ))}
             </Grid>
-            {/* End sidebar */}
-          </Grid>
-        </main>
-      </div>
-     <Footer/>
-    </React.Fragment>
-  );
+            {/* End sub featured posts */}
+            <Grid container spacing={40} className={classes.mainGrid}>
+              {/* Main content */}
+              <Grid item xs={12} md={8}>
+                <Typography variant="h6" gutterBottom>
+                  About Us page story template
+                </Typography>
+                <Divider />
+                <Typography variant="h6" gutterBottom>
+                <p>[FOUNDERS] started [COMPANY] because [EXPLAIN PROBLEM IN YOUR INDUSTRY].</p>
+                <p>That's why [DESCRIBE JOURNEY TO SOLUTION].</p>
+                <p>Along the way, [SHARE MILESTONES AND WINS].</p>
+                <p>We want to be [STATE YOUR MISSION GOING FORWARD].</p>
+                <p>
+                Keep in mind that writing your actual copy in the first person (e.g. I, We) will help build a more personal connection with your audience. 
+                Your About Us page is About YOU, so don't shy away from that.
+                </p>
+                </Typography>
+              </Grid>
+              {/* End main content */}
+              {/* Sidebar */}
+              <Grid item xs={12} md={4}>
+                <Paper elevation={0} className={classes.sidebarAboutBox}>
+                <QuoteBlock 
+                  quote="Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+                  amet fermentum. Aenean lacinia bibendum nulla sed consectetur."
+                  quotee="Test Guy"
+                  company="test company"
+                />
+                </Paper>            
+                <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
+                  Social
+                </Typography>
+                {social.map(network => (
+                  <Button key={network}>{network}</Button>
+                ))}
+              </Grid>
+              {/* End sidebar */}
+            </Grid>
+          </main>
+        </div>
+      </React.Fragment>
+    );
+  }               
 }
 
-Blog.propTypes = {
+About.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Blog);
+export default withStyles(styles)(About);

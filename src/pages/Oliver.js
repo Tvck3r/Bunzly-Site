@@ -10,8 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 // Components
-import Footer from '../components/Footer'
-import { Paper, Typography } from '@material-ui/core';
+import {  Typography } from '@material-ui/core';
 import ResumeTab from '../components/ResumeTab';
 
 const styles = theme => ({
@@ -65,7 +64,7 @@ function Oliver(props) {
             <ResumeTab />   
         </Grid>
       </div>
-      <Footer />
+
     </React.Fragment>
   );
 }
