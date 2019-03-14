@@ -32,6 +32,12 @@ const styles = theme => ({
         marginRight: 'auto',
         },
     },
+    cardLayout: {
+
+    },
+    list: {
+
+    },
     bigAvatar: {
         margin: 10,
         width: 200,
@@ -41,66 +47,39 @@ const styles = theme => ({
     card: {
         display: 'flex',
     },
-      cardDetails: {
+    cardDetails: {
         flex: 1,
     },
-      cardMedia: {
+    cardMedia: {
         width: 160,
     },
-      list: {
-
-      },
-      date: {
+    date: {
         float: 'right',
         marginLeft: 'auto', 
         marginRight: 0,
         marginBottom: 10,
-      },
-
-  spacing: {
-    margin: 20,
-  }
-
+    },
+    spacing: {
+      margin: 10,
+    },
 });
 
-const resTop = [
-    {
-        title: 'Achievments:',
-        order: 1,
-        date: '',
-        description: [
-          'Mr. Robot is an American drama thriller television series created by Sam Esmail.',
-          'It stars Rami Malek as Elliot Alderson, a cybersecurity engineer and hacker who has social anxiety disorder and clinical depression.',
-          'Elliot is recruited by an insurrectionary anarchist known as "Mr. Robot", played by Christian Slater, to join a group of hacktivists called "fsociety".',
-        ],
-      },
-  
-      {
-        title: 'Tech Stack:',
-        order: 2,
-        date: '',
-        description: [
-          'Mr. Robot is an American drama thriller television series created by Sam Esmail.',
-          'It stars Rami Malek as Elliot Alderson, a cybersecurity engineer and hacker who has social anxiety disorder and clinical depression.',
-          'Elliot is recruited by an insurrectionary anarchist known as "Mr. Robot", played by Christian Slater, to join a group of hacktivists called "fsociety".',
-        ],
-      },
+const achievements = [
+          'I hacked the world and caused an economic crisis.',
+          'I successfully have the sharpest Jaw line that there is.',
+          'I have successfully been a part of one of the only shows with realistic lookinh hacking.',
 ];
 
-const education = [
-    {
-    title: 'Education:',
-    school: '​​University of North Carolina – Wilmington',
-    gpa: '4.0',
-    extra1: 'Cameron School of Business – Bachelor of Science – International Business',
-    extra2: 'UNCW Honors program',
-    },
+const techStack = [
+          'Skilled in most languages, I excel in Python, C#, and Ruby.',
+          'I excel with most databases, but prefer to use SQL over MYSQL or PostGres.',
+          'I am AWS, just try me.',
 ];
 
 const jobListings = [
     {
         title: 'Company Name 1',
-        order: 2,
+        order: 3,
         location: 'HackerVille, NY',
         date: 'May 2018 - Present',
         description: [
@@ -112,7 +91,7 @@ const jobListings = [
 
       {
         title: 'Company Name 2',
-        order: 2,
+        order: 4,
         location: 'HackerVille, NY',
         date: 'June 2017 - May 2018',
         description: [
@@ -124,7 +103,7 @@ const jobListings = [
 
       {
         title: 'Company Name 3',
-        order: 2,
+        order: 5,
         location: 'HackerVille, NY',
         date: 'May 2016 - June 2017',
         description: [
@@ -136,7 +115,7 @@ const jobListings = [
 
       {
         title: 'Company Name 4',
-        order: 2,
+        order: 6,
         location: 'HackerVille, NY',
         date: 'May 2015 - May 2016',
         description: [
@@ -146,6 +125,16 @@ const jobListings = [
           ],
       },
   ];
+
+const education = [
+    {
+    title: 'Education:',
+    school: '​​University of North Carolina – Wilmington',
+    gpa: 'GPA: 4.0',
+    extra1: 'Cameron School of Business – Bachelor of Science – International Business',
+    extra2: 'UNCW Honors program',
+    },
+];
 
 function Oliver(props) {
     const transitionDelay = '250';
@@ -172,46 +161,123 @@ function Oliver(props) {
             1234 MrRobot Dr. HackerVille, NY 10101  ||  062-420-1532  ||  olivergillette@gmail.com
           </Typography>
         </Grid>
+      </div>
 
-        <Divider />
+        <Divider className={classes.spacing}/>
+
+      <div className={classes.cardLayout}>
+
         <Grid container spacing={40} className={classes.cardGrid}>
-            {jobListings.map(person => (
-              <Grid item key={person.title} xs={12} md={12}>
-                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * person.order) + 'ms' ) }}>
+          <Grid item xs={12} md={12}>
+            <Zoom in={true} style={{ transitionDelay: ((transitionDelay * 1) + 'ms' ) }}>
+              <Card className={classes.card}>
+                <div className={classes.cardDetails}>
+                   <CardContent>
+                    <Grid xs={12} md={12}>
+                      <Typography component="h2" variant="h5">
+                        Achievments:
+                      </Typography>  
+                        {achievements.map(line => (
+                          <Typography variant="subtitle1" paragraph className={classes.list}>
+                            {line}
+                          </Typography>
+                        ))}
+                    </Grid> 
+                  </CardContent>
+                </div>
+              </Card>
+              </Zoom>
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={40} className={classes.cardGrid}>
+            <Grid item xs={12} md={12}>
+              <Zoom in={true} style={{ transitionDelay: ((transitionDelay * 2) + 'ms' ) }}>
+                <Card className={classes.card}>
+                  <div className={classes.cardDetails}>
+                    <CardContent>
+                        <Grid xs={12} md={12}>
+                          <Typography component="h2" variant="h5">
+                            Tech Stack:
+                          </Typography>  
+                            {techStack.map(line => (
+                              <Typography variant="subtitle1" paragraph className={classes.list}>
+                                {line}
+                              </Typography>
+                            ))}
+                          </Grid> 
+                      </CardContent>
+                    </div>
+                  </Card>
+                </Zoom>
+              </Grid>
+            </Grid>
+      
+
+        <Grid container spacing={40} className={classes.cardGrid}>
+            {jobListings.map(jobListing => (
+              <Grid item key={jobListing.title} xs={12} md={12}>
+                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * jobListing.order) + 'ms' ) }}>
                     <Card className={classes.card}>
                         <div className={classes.cardDetails}>
                             <CardContent>
                             <Typography variant="subtitle1" color="textSecondary" className={classes.date}>
-                                {person.date}
+                                {jobListing.date}
                             </Typography>
                             <Typography component="h2" variant="h5">
-                                {person.title}
+                                {jobListing.title}
                             </Typography>
                             <Typography component="body1">
-                                {person.location}
+                                {jobListing.location}
                             </Typography>
                             <br />
-                                {person.description.map(line => (
+                                {jobListing.description.map(line => (
                                     <Typography variant="subtitle1" paragraph className={classes.list}>
                                         {line}
                                     </Typography>
                                 ))}
+                              </CardContent>
+                          </div>
+                      </Card>
+                  </Zoom>
+                </Grid>
+              ))}
+          </Grid>
+
+
+      <Grid container spacing={40} className={classes.cardGrid}>
+            {education.map(item => (
+              <Grid item key={item.title} xs={12} md={12}>
+                <Zoom in={true} style={{ transitionDelay: ((transitionDelay * 7) + 'ms' ) }}>
+                    <Card className={classes.card}>
+                        <div className={classes.cardDetails}>
+                            <CardContent>
+                            <Typography variant="subtitle1" color="textSecondary" className={classes.date}>
+                                {item.gpa}
+                            </Typography>
+                            <Typography component="h2" variant="h5">
+                                {item.title}
+                            </Typography>
+                            <Typography component="body1">
+                                {item.school}
+                            </Typography>
+                            <br />
+                            <Typography variant="subtitle1" paragraph className={classes.list}>
+                                {item.extra1}
+                            </Typography>
+                            <Typography variant="subtitle1" paragraph className={classes.list}>
+                                {item.extra2}
+                            </Typography>
                             </CardContent>
                             </div>
-                            <CardMedia
-                            className={classes.cardMedia}
-                            image={person.picture}
-                            title="Image title"
-                            />
-                        </Card>
+                      </Card>
                     </Zoom>
-                
-              </Grid>
-            ))}
-          </Grid>
+                </Grid>
+              ))}
+        </Grid>
       </div>
-      <Footer />
-    </React.Fragment>
+    <Footer />
+  </React.Fragment>
   );
 }
 
