@@ -170,7 +170,7 @@ class Checkout extends React.Component {
     const activeStep  = this.state.activeStep;
 
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={this.theme}>
      
       <React.Fragment>
         <CssBaseline />
