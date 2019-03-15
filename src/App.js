@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
 
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import Home from './pages/Home';
 import NavAppBar from './components/NavAppBar';
 import ContactUs from './pages/ContactUs';
@@ -42,7 +43,13 @@ const styles = theme => ({
   },
   appBarPlaceHolder : {
     backgroundColor: theme.palette.grey[800],
-  }
+  },
+  button: {
+    margin: theme.spacing.unit,
+    left: '50vw',
+    top: '80vh',
+    transform: 'translate(-50%, -50%)',
+  },
 });
 
 class App extends Component {
@@ -50,15 +57,12 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      pageId: 0
-      ,plxHeight: 0
-     
-      ,appBarState:'static'
+      pageId: 0,
+      plxHeight: 0,
+      appBarState:'static',
     }
+    this.goHere = React.createRef()
 }
-
-
-
 
 
 getPage(pageId) {
@@ -127,6 +131,10 @@ handleOliverPage = () => {
   logState = () =>{
     console.log(this.state)
   }
+
+  logScrolledState = () => {
+    console.log(this.state.scrolled)
+  }
   
   handleScroll = () => {
    
@@ -135,7 +143,6 @@ handleOliverPage = () => {
   
     if(winScroll >= this.state.plxHeight){
       this.setState({appBarState:'fixed'})
-      //console.log('Sticky!')
     }
     else {
       this.setState({appBarState:'static'})
@@ -151,15 +158,36 @@ handleOliverPage = () => {
       else 
         return <div/>;
   }
+
+  scrollToMyRef = () => window.scrollTo({
+    top: this.goHere.current.offsetTop,
+    bottom: this.goHere.current.offsetBottom,
+    behavior: 'smooth'
+  })
+
+  handleClick = () => {
+    this.scrollToMyRef()
+  }
+
   
   render() {
     const { classes } = this.props;
+    const { scrolled } = this.state;
+    this.logScrolledState()
+
     return (
       <div className="App">       
       
         <NavAppBar appBarState={this.state.appBarState}/>
-        <Paper id='backGrnd' className={classes.parallax}></Paper>
+        <Paper id='backGrnd' className={classes.parallax}>
+          <Button variant="contained" onClick={this.handleClick} className={classes.button}>
+            Scroll Down 
+            <br />
+            (Or Click, who cares)
+          </Button>
+        </Paper>
         {this.getAppBarDiv()}
+        <div ref={this.goHere} className='locator'></div>
         {this.getPage(this.state.pageId)}
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         <Footer 
@@ -172,7 +200,6 @@ handleOliverPage = () => {
     );
   }
 }
-
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
