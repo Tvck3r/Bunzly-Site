@@ -40,7 +40,6 @@ const styles = theme => ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover", 
-<<<<<<< HEAD
   },
   appBarPlaceHolder : {
     backgroundColor: theme.palette.grey[800],
@@ -51,9 +50,7 @@ const styles = theme => ({
     top: '80vh',
     transform: 'translate(-50%, -50%)',
   },
-=======
   }
->>>>>>> af7a3da8b603e0d59c9f3b6838f1482051b29cc8
 });
 
 class App extends Component {
@@ -61,11 +58,9 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-<<<<<<< HEAD
       pageId: 0,
       plxHeight: 0,
       appBarState:'static',
-=======
       pageId: 0
       ,plxHeight: 0
       ,logoMultiplyer: 1
@@ -73,7 +68,6 @@ class App extends Component {
       ,appBarTransparency:'transparent'
       ,appBarShadow:'none'
       ,appBarState:'static'
->>>>>>> af7a3da8b603e0d59c9f3b6838f1482051b29cc8
     }
     this.goHere = React.createRef()
 }
@@ -159,13 +153,10 @@ handleOliverPage = () => {
   
     if(winScroll >= this.state.plxHeight){
       this.setState({appBarState:'fixed'})
-<<<<<<< HEAD
-=======
       this.setState({appBarTransparency:'white'})
       //this.setState({appBarShadow:null})
 
       //console.log('Sticky!')
->>>>>>> af7a3da8b603e0d59c9f3b6838f1482051b29cc8
     }
     else {
       this.setState({logoMultiplyer:(this.state.plxHeight- winScroll)/this.state.plxHeight})
@@ -204,7 +195,6 @@ handleOliverPage = () => {
     return (
       <div className="App">       
       
-<<<<<<< HEAD
         <NavAppBar appBarState={this.state.appBarState}/>
         <Paper id='backGrnd' className={classes.parallax}>
           <Button variant="contained" onClick={this.handleClick} className={classes.button}>
@@ -215,7 +205,6 @@ handleOliverPage = () => {
         </Paper>
         {this.getAppBarDiv()}
         <div ref={this.goHere} className='locator'></div>
-=======
         <NavAppBar 
           appBarState={this.state.appBarState} 
           logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
@@ -224,7 +213,6 @@ handleOliverPage = () => {
           />
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         {/*   {this.getAppBarDiv()} */}
->>>>>>> af7a3da8b603e0d59c9f3b6838f1482051b29cc8
         {this.getPage(this.state.pageId)}
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         <Footer 
