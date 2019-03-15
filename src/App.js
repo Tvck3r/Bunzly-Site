@@ -50,7 +50,6 @@ const styles = theme => ({
     top: '80vh',
     transform: 'translate(-50%, -50%)',
   },
-  }
 });
 
 class App extends Component {
@@ -194,8 +193,12 @@ handleOliverPage = () => {
 
     return (
       <div className="App">       
-      
-        <NavAppBar appBarState={this.state.appBarState}/>
+        <NavAppBar 
+          appBarState={this.state.appBarState} 
+          logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
+          appBarTransparency={this.state.appBarTransparency}
+          appBarShadow={this.state.appBarShadow}
+        />
         <Paper id='backGrnd' className={classes.parallax}>
           <Button variant="contained" onClick={this.handleClick} className={classes.button}>
             Scroll Down 
@@ -203,16 +206,7 @@ handleOliverPage = () => {
             (Or Click, who cares)
           </Button>
         </Paper>
-        {this.getAppBarDiv()}
         <div ref={this.goHere} className='locator'></div>
-        <NavAppBar 
-          appBarState={this.state.appBarState} 
-          logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
-          appBarTransparency={this.state.appBarTransparency}
-          appBarShadow={this.state.appBarShadow}
-          />
-        <Paper id='backGrnd' className={classes.parallax}></Paper>
-        {/*   {this.getAppBarDiv()} */}
         {this.getPage(this.state.pageId)}
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         <Footer 

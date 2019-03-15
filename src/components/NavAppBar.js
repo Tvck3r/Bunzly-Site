@@ -247,8 +247,25 @@ class NavAppBar extends React.Component {
 
             <div className={classes.sectionDesktop}>
               <Button color="inherit" href='/ContactUs' >
+                <p>Home</p>
+              </Button>
+
+              <Button color="inherit" href='/ContactUs' >
+                <p>About</p>
+              </Button>
+
+              <Button color="inherit" href='/ContactUs' >
+                <p>Services</p>
+              </Button>
+
+              <Button color="inherit" href='/ContactUs' >
+                <p>References</p>
+              </Button>
+
+              <Button color="inherit" href='/ContactUs' >
                 <p>Contact</p>
               </Button>
+
               <Button 
                 aria-owns={isPagesMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
@@ -261,7 +278,15 @@ class NavAppBar extends React.Component {
               <div className={classes.grow} />
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
+                  <Button 
+                  aria-owns={isPagesMenuOpen ? 'material-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handlePagesMenuOpen}
+                  color="inherit"
+                  >
                   <SearchIcon />
+                  </Button>
+
                 </div>
                 <InputBase
                   placeholder="Search…"
