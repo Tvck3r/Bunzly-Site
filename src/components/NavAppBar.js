@@ -10,7 +10,10 @@ import { withStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
 import {  Redirect} from 'react-router-dom'
+import InputBase from '@material-ui/core/InputBase';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 //import SearchIcon from '@material-ui/icons/Search';
 //import InputBase from '@material-ui/core/InputBase';
@@ -20,6 +23,9 @@ import {  Redirect} from 'react-router-dom'
 //https://material-ui.com/demos/app-bar/
 
 const styles = theme => ({
+  root: {
+    width: '100%',
+  },
    grow: {
     flexGrow: 1,
   },
@@ -46,6 +52,48 @@ const styles = theme => ({
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       display: 'none',
+    },
+  },
+  
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit,
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing.unit * 9,
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+    width: '100%',
+  },
+  inputInput: {
+    paddingTop: theme.spacing.unit * 2.5,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: 120,
+      '&:focus': {
+        width: 200,
+      },
     },
   },
 });
@@ -127,13 +175,11 @@ class NavAppBar extends React.Component {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     if (this.state.navValue === 'contact-us') {
-
       return <Redirect to='/ContactUs' />
     }
     if (this.state.navValue === 'checkout') {
       return <Redirect to='/CheckOut' />
     }
-
     if (this.state.navValue === 'about') {
       return <Redirect to='/About' />
     }
@@ -182,15 +228,17 @@ class NavAppBar extends React.Component {
       <div >
         <AppBar 
           className={classes.appBar} 
-          style={{ background: 'transparent',  height:"20vh"}} 
+          style={{ background: this.props.appBarTransparency, boxShadow: this.props.appBarShadow}} 
+           //  style={{ background: this.props.appBarState}} 
           position='fixed'
           //position={this.props.appBarState} 
           color="default">
-          <Toolbar style={{textAlign:'center'}} >
-            <IconButton href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
-            <Typography  style={{ fontSize: 30 }} className={classes.title} variant="h5" color="inherit" noWrap>
-              Bunzly.io
-            </Typography>
+          <Toolbar  >
+            <div></div>
+            <IconButton  href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
+              <Typography   style={{ fontSize: this.props.logoSize  }} className={classes.title} variant="h5" color="inherit" noWrap>
+                Bunzly.io
+              </Typography>
             </IconButton>
           
             <div className={classes.grow} />
@@ -209,6 +257,22 @@ class NavAppBar extends React.Component {
               >
                 Pages
               </Button>
+              
+              <div className={classes.grow} />
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+
+              
             </div>
 
 
@@ -218,6 +282,7 @@ class NavAppBar extends React.Component {
                 <MoreIcon />
               </IconButton>
             </div>
+
 
           </Toolbar>
         </AppBar>
