@@ -28,8 +28,9 @@ const theme = createMuiTheme({
 const styles = theme => ({
   parallax : {
     backgroundColor: theme.palette.grey[800],
+
     /* The image used */
-    backgroundImage:"url(https://images.unsplash.com/photo-1552057465-6e6e645249ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+    backgroundImage:"url(https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483__340.jpg)",
     /* Full height */
     height:"100vh",
     opacity:".65",
@@ -38,9 +39,6 @@ const styles = theme => ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover", 
-  },
-  appBarPlaceHolder : {
-    backgroundColor: theme.palette.grey[800],
   }
 });
 
@@ -51,7 +49,10 @@ class App extends Component {
     this.state = {
       pageId: 0
       ,plxHeight: 0
-     
+      ,logoMultiplyer: 1
+      ,logoSize: 30
+      ,appBarTransparency:'transparent'
+      ,appBarShadow:'none'
       ,appBarState:'static'
     }
 }
@@ -114,8 +115,7 @@ handleOliverPage = () => {
   componentDidMount() {
     window.scrollTo(0,0);
     window.addEventListener('scroll', this.handleScroll);
-    this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight});
-  
+    this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight});  
   }
 
   
@@ -131,13 +131,22 @@ handleOliverPage = () => {
    
     const winScroll =
     document.body.scrollTop || document.documentElement.scrollTop
+        
+    //this.state.plxHeight = 928
+
   
     if(winScroll >= this.state.plxHeight){
       this.setState({appBarState:'fixed'})
+      this.setState({appBarTransparency:'white'})
+      //this.setState({appBarShadow:null})
+
       //console.log('Sticky!')
     }
     else {
+      this.setState({logoMultiplyer:(this.state.plxHeight- winScroll)/this.state.plxHeight})
       this.setState({appBarState:'static'})
+      this.setState({appBarTransparency:'transparent'})
+      this.setState({appBarShadow:'none'})
     }
   
 
@@ -155,9 +164,15 @@ handleOliverPage = () => {
     const { classes } = this.props;
     return (
       <div className="App">       
+      
+        <NavAppBar 
+          appBarState={this.state.appBarState} 
+          logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
+          appBarTransparency={this.state.appBarTransparency}
+          appBarShadow={this.state.appBarShadow}
+          />
         <Paper id='backGrnd' className={classes.parallax}></Paper>
-        <NavAppBar appBarState={this.state.appBarState}/>
-        {this.getAppBarDiv()}
+        {/*   {this.getAppBarDiv()} */}
         {this.getPage(this.state.pageId)}
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         <Footer 
