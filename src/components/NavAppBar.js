@@ -179,15 +179,20 @@ class NavAppBar extends React.Component {
     );
 
     return (
-      <div className={classes.root}>
-        <AppBar className={classes.appBar} position={this.props.appBarState} color="default">
-          <Toolbar>
+      <div >
+        <AppBar 
+          className={classes.appBar} 
+          style={{ background: 'transparent',  height:"20vh"}} 
+          position='fixed'
+          //position={this.props.appBarState} 
+          color="default">
+          <Toolbar style={{textAlign:'center'}} >
             <IconButton href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
-              <HomeIcon />
-            </IconButton>
-            <Typography  className={classes.title} variant="h5" color="inherit" noWrap>
+            <Typography  style={{ fontSize: 30 }} className={classes.title} variant="h5" color="inherit" noWrap>
               Bunzly.io
             </Typography>
+            </IconButton>
+          
             <div className={classes.grow} />
 
 

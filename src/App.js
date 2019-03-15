@@ -28,6 +28,7 @@ const theme = createMuiTheme({
 const styles = theme => ({
   parallax : {
     backgroundColor: theme.palette.grey[800],
+
     /* The image used */
     backgroundImage:"url(https://images.unsplash.com/photo-1552057465-6e6e645249ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
     /* Full height */
@@ -155,8 +156,9 @@ handleOliverPage = () => {
     const { classes } = this.props;
     return (
       <div className="App">       
-        <Paper id='backGrnd' className={classes.parallax}></Paper>
+      
         <NavAppBar appBarState={this.state.appBarState}/>
+        <Paper id='backGrnd' className={classes.parallax}></Paper>
         {this.getAppBarDiv()}
         {this.getPage(this.state.pageId)}
         <Paper id='backGrnd' className={classes.parallax}></Paper>
