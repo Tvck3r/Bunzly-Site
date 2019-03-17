@@ -174,18 +174,6 @@ class NavAppBar extends React.Component {
     const isPagesMenuOpen = Boolean(pagesAnchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    if (this.state.navValue === 'contact-us') {
-      return <Redirect to='/ContactUs' />
-    }
-    if (this.state.navValue === 'checkout') {
-      return <Redirect to='/CheckOut' />
-    }
-    if (this.state.navValue === 'about') {
-      return <Redirect to='/About' />
-    }
-    if (this.state.navValue === 'users') {
-      return <Redirect to='/Users' />
-    }
 
     const renderPagesMenu = (
         <Menu
@@ -246,23 +234,23 @@ class NavAppBar extends React.Component {
 
 
             <div className={classes.sectionDesktop}>
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" onClick={this.props.handleHomePage}>
                 <p>Home</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" onClick={this.props.handleAboutPage}>
                 <p>About</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" >
                 <p>Services</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" >
                 <p>References</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" onClick={this.props.handleContactPage}>
                 <p>Contact</p>
               </Button>
 

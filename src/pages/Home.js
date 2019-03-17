@@ -6,10 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 // Components
 import Footer from '../components/Footer'
 import Featurette from '../components/Featurette';
 import NavAppBar from '../components/NavAppBar';
+
 
 
 const styles = theme => ({
@@ -60,8 +63,18 @@ const styles = theme => ({
   plxCenter:{
     width:'100%',
   },
+  topButton: {
+    backgroundColor: 'transparent',
+    margin: theme.spacing.unit,
+    left: '50vw',
+    top: '80vh',
+    boxShadow: 'none',
+  },
+  expandIcon: {
+    color: 'black',
+    fontSize: 60,
+  },
   layout: {
-    
     width: 'auto',
     paddingTop: `${theme.spacing.unit * 12}px`,
     marginLeft: theme.spacing.unit * 3,
@@ -71,8 +84,18 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-
   }, 
+  topButton: {
+    margin: theme.spacing.unit,
+    left: '50vw',
+    top: '70vh',
+    boxShadow: 'none',
+    opacity:'.68'
+  },
+  expandIcon: {
+    color: '#000000',
+    fontSize: 50,
+  },
   mainFeaturedPostContent: {
     //padding: `${theme.spacing.unit * 25}px`,
     marginTop: theme.spacing.unit * 48,
@@ -89,30 +112,39 @@ const styles = theme => ({
 
 
 
-const Home = (props) => {
+class Home extends Component  {
 
- /*  handleScrollSelection = event => {
-    console.log("scroll was clicked");
-    this.scrollToMyRef();
-  } */
+  constructor() {
+    super();
+    this.goHere = React.createRef();
+  }
 
- /*  scrollToMyRef = () => window.scrollTo({
-    top: this.myRef.current.offsetTop,
-    bottom: this.myRef.current.offsetBottom,
+  scrollToMyRef = () => window.scrollTo({
+    top: this.goHere.current.offsetTop,
+    bottom: this.goHere.current.offsetBottom,
     behavior: 'smooth'
   })
- */
-/*   constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-  } */
-
   
-    const { classes } = props;
+  handleClick = () => {
+    this.scrollToMyRef()
+  }
+
+    
+  render() {
+
+  const { classes } = this.props;
+
     return (
-      <React.Fragment>     
+      <React.Fragment> 
+          <Paper id='backGrnd' className={classes.parallax}>
+            <Button variant="contained" onClick={this.handleClick} className={classes.topButton}>
+              <ExpandMore className={classes.expandIcon} />
+            </Button>
+          </Paper>    
         <main className={classes.layout}>
           <div  className={classes.heroContent}>
+
+            <div ref={this.goHere} className='locator'></div>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Services
             </Typography>
@@ -140,7 +172,7 @@ const Home = (props) => {
       </React.Fragment>
     );  
 }
-
+}
 Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
