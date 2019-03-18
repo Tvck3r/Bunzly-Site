@@ -40,10 +40,6 @@ const Footer = (props) => {
 
     const { classes } = props;
 
-
-    
-
-
     const footers = [
         {
           title: 'Company',
@@ -58,52 +54,6 @@ const Footer = (props) => {
             },
             {
               title: 'Locations',
-              url: './404Page',
-            },
-          ]
-        },
-        {
-          title: 'Features',
-          pages:[
-            {
-              title: 'Cool stuff',
-              url: './404Page',
-            },
-            {
-              title: 'Random feature',
-              url: './404Page',
-            },
-            {
-              title: 'Team feature',
-              url: './404Page',
-            },
-            {
-              title: 'Developer stuff',
-              url: './test',
-            },
-            {
-              title: 'Another one',
-              url: './404Page',
-            },
-          ]
-        },
-        {
-          title: 'Resources',
-          pages:[
-            {
-              title: 'Resource',
-              url: './404Page',
-            },
-            {
-              title: 'Resource name',
-              url: './404Page',
-            },
-            {
-              title: 'Another resource',
-              url: './404Page',
-            },
-            {
-              title: 'Final resource',
               url: './404Page',
             },
           ]

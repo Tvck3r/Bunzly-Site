@@ -25,7 +25,7 @@ const styles = theme => ({
   parallax : {
     backgroundColor: theme.palette.grey[800],
     /* The image used */
-    backgroundImage:"url(https://images.unsplash.com/photo-1552057465-6e6e645249ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+    backgroundImage:"url(https://images.unsplash.com/photo-1548031076-e0f45007f853?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)",
     /* Full height */
     height:"100vh",
     opacity:".65",
@@ -63,13 +63,6 @@ const styles = theme => ({
   plxCenter:{
     width:'100%',
   },
-  topButton: {
-    backgroundColor: 'transparent',
-    margin: theme.spacing.unit,
-    left: '50vw',
-    top: '80vh',
-    boxShadow: 'none',
-  },
   expandIcon: {
     color: 'black',
     fontSize: 60,
@@ -90,7 +83,8 @@ const styles = theme => ({
     left: '50vw',
     top: '70vh',
     boxShadow: 'none',
-    opacity:'.68'
+    backgroundColor: 'transparent',
+    //opacity:'.68'
   },
   expandIcon: {
     color: '#000000',
@@ -119,6 +113,10 @@ class Home extends Component  {
     this.goHere = React.createRef();
   }
 
+  componentDidMount(){
+    window.scrollTo(0,0);
+  } 
+
   scrollToMyRef = () => window.scrollTo({
     top: this.goHere.current.offsetTop,
     bottom: this.goHere.current.offsetBottom,
@@ -141,15 +139,10 @@ class Home extends Component  {
               <ExpandMore className={classes.expandIcon} />
             </Button>
           </Paper>    
-        <main className={classes.layout}>
-          <div  className={classes.heroContent}>
-
-            <div ref={this.goHere} className='locator'></div>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        <main className={classes.layout} ref={this.goHere}  >
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Services
             </Typography>
-          </div>
-
           <Featurette 
             header='Define'
             body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
@@ -169,7 +162,14 @@ class Home extends Component  {
             src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
           </Featurette>
         </main> 
+        <br/>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Our Location
+        </Typography>
+        <br/>
       </React.Fragment>
+
+
     );  
 }
 }

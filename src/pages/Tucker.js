@@ -25,8 +25,15 @@ const styles = theme => ({
 });
 
 
-function Tucker(props) {
-  const { classes } = props;
+class Tucker extends React.Component {
+
+  componentDidMount(){
+   window.scrollTo(0,0);
+ } 
+ 
+ render() { 
+  const transitionDelay = '250';
+  const { classes } = this.props;
 
   return (
     <React.Fragment>
@@ -38,7 +45,8 @@ function Tucker(props) {
         <Footer />
       </div>
     </React.Fragment>
-  );
+  );  
+}
 }
 
 Tucker.propTypes = {

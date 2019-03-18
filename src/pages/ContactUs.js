@@ -84,6 +84,10 @@ class Checkout extends React.Component {
     stateProvReg:null,
     message:null
   }
+
+  componentDidMount(){
+    window.scrollTo(0,0);
+  } 
   
   getStepContent(step) {
     switch (step) {
@@ -115,7 +119,8 @@ class Checkout extends React.Component {
       case 2:
         return <EmailConfirmation 
                   email={this.state.email} 
-                  message={this.state.message}/>;
+                  message={this.state.message}
+                  firstName={this.state.firstName}/>;
       default:
         throw new Error('Unknown step');
     }

@@ -10,7 +10,7 @@ const EmailConfirmation = (props) => {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Review message
+        Review message:
       </Typography>
 
       <Typography variant="subtitle1" gutterBottom>

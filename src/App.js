@@ -44,19 +44,6 @@ const styles = theme => ({
     color: 'black',
     fontSize: 60,
   },
-  parallax : {
-    backgroundColor: theme.palette.grey[800],
-    /* The image used */
-    backgroundImage:"url(https://images.unsplash.com/photo-1552057465-6e6e645249ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
-    /* Full height */
-    height:"100vh",
-    opacity:".65",
-    /* Create the parallax scrolling effect */
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover", 
-  },
 });
 
 const gMapCoords = {
@@ -113,6 +100,9 @@ handleHomePage = () => {
   this.setState({
     pageId: 0,
     logoMultiplyer: 1,
+    appBarTransparency:'transparent',
+    appBarShadow:'none',
+    appBarState:'static'
   });
 };
 
@@ -160,14 +150,10 @@ handleOliverPage = () => {
   }
   
   handleScroll = () => {
-   
-    const winScroll =
-    document.body.scrollTop || document.documentElement.scrollTop
-    this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight});  
-        
-    console.log(this.state.logoMultiplyer)
-
     if(this.state.pageId === 0) {
+      const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop
+      this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight}); 
       if(winScroll >= this.state.plxHeight){
         this.setState({appBarState:'fixed'})
         this.setState({appBarTransparency:'white'})
@@ -197,7 +183,6 @@ handleOliverPage = () => {
       else 
         return <div/>
   }
-
   
   render() {
     const { classes } = this.props;
@@ -216,7 +201,7 @@ handleOliverPage = () => {
           handleAboutPage={this.handleAboutPage}
           handleContactPage={this.handleContactPage}
         />
-        <Paper id='backGrnd' className={classes.parallax}></Paper>
+       
         <Location center={gMapCoords.center} zoom={gMapCoords.zoom}/>
         <Footer 
         handleHomePage={this.handleHomePage} 

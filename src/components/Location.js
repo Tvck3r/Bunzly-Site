@@ -35,13 +35,13 @@ const Location = (props) => {
     
   const { classes } = props;
 
-
+  
 
     return (
         
         <div style={{ height: '50vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyAvXNMWL_VlxkViHbo6vUs5TanivLTpd48'}}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
           defaultCenter={props.center}
           defaultZoom={props.zoom}
         >

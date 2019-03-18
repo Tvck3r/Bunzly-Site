@@ -26,11 +26,16 @@ const styles = theme => ({
   }
 });
 
-function Test(props) {
-  
-  const { classes } = props;
+class Test extends React.Component {
 
-    return ( 
+  componentDidMount(){
+   window.scrollTo(0,0);
+ } 
+ 
+ render() { 
+  const { classes } = this.props;
+
+  return (
       <React.Fragment>
       <CssBaseline />
 
@@ -38,8 +43,13 @@ function Test(props) {
 
         </div>
       </React.Fragment>
-    )
-}    
+  );  
+}
+}   
 
+Test.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Test);
+
