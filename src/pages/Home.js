@@ -6,10 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 // Components
 import Footer from '../components/Footer'
 import Featurette from '../components/Featurette';
 import NavAppBar from '../components/NavAppBar';
+
 
 
 const styles = theme => ({
@@ -22,7 +25,7 @@ const styles = theme => ({
   parallax : {
     backgroundColor: theme.palette.grey[800],
     /* The image used */
-    backgroundImage:"url(https://images.unsplash.com/photo-1552057465-6e6e645249ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+    backgroundImage:"url(https://images.unsplash.com/photo-1548031076-e0f45007f853?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)",
     /* Full height */
     height:"100vh",
     opacity:".65",
@@ -60,8 +63,11 @@ const styles = theme => ({
   plxCenter:{
     width:'100%',
   },
+  expandIcon: {
+    color: 'black',
+    fontSize: 60,
+  },
   layout: {
-    
     width: 'auto',
     paddingTop: `${theme.spacing.unit * 12}px`,
     marginLeft: theme.spacing.unit * 3,
@@ -71,8 +77,19 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-
   }, 
+  topButton: {
+    margin: theme.spacing.unit,
+    left: '50vw',
+    top: '70vh',
+    boxShadow: 'none',
+    backgroundColor: 'transparent',
+    //opacity:'.68'
+  },
+  expandIcon: {
+    color: '#000000',
+    fontSize: 50,
+  },
   mainFeaturedPostContent: {
     //padding: `${theme.spacing.unit * 25}px`,
     marginTop: theme.spacing.unit * 48,
@@ -89,35 +106,43 @@ const styles = theme => ({
 
 
 
-const Home = (props) => {
+class Home extends Component  {
 
- /*  handleScrollSelection = event => {
-    console.log("scroll was clicked");
-    this.scrollToMyRef();
-  } */
+  constructor() {
+    super();
+    this.goHere = React.createRef();
+  }
 
- /*  scrollToMyRef = () => window.scrollTo({
-    top: this.myRef.current.offsetTop,
-    bottom: this.myRef.current.offsetBottom,
+  componentDidMount(){
+    window.scrollTo(0,0);
+  } 
+
+  scrollToMyRef = () => window.scrollTo({
+    top: this.goHere.current.offsetTop,
+    bottom: this.goHere.current.offsetBottom,
     behavior: 'smooth'
   })
- */
-/*   constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-  } */
-
   
-    const { classes } = props;
+  handleClick = () => {
+    this.scrollToMyRef()
+  }
+
+    
+  render() {
+
+  const { classes } = this.props;
+
     return (
-      <React.Fragment>     
-        <main className={classes.layout}>
-          <div  className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+      <React.Fragment> 
+          <Paper id='backGrnd' className={classes.parallax}>
+            <Button variant="contained" onClick={this.handleClick} className={classes.topButton}>
+              <ExpandMore className={classes.expandIcon} />
+            </Button>
+          </Paper>    
+        <main className={classes.layout} ref={this.goHere}  >
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               Services
             </Typography>
-          </div>
-
           <Featurette 
             header='Define'
             body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
@@ -137,10 +162,17 @@ const Home = (props) => {
             src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
           </Featurette>
         </main> 
+        <br/>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Our Location
+        </Typography>
+        <br/>
       </React.Fragment>
+
+
     );  
 }
-
+}
 Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };

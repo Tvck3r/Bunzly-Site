@@ -135,9 +135,15 @@ const education = [
     },
 ];
 
-function Oliver(props) {
-    const transitionDelay = '250';
-    const { classes } = props;
+class Oliver extends React.Component {
+
+  componentDidMount(){
+   window.scrollTo(0,0);
+ } 
+ 
+ render() { 
+  const transitionDelay = '250';
+  const { classes } = this.props;
 
   return (
     <React.Fragment>
@@ -277,7 +283,8 @@ function Oliver(props) {
       </div>
     </React.Fragment>
 
-  );
+  );  
+}
 }
 
 Oliver.propTypes = {
