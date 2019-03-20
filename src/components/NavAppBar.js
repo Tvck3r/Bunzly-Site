@@ -35,7 +35,8 @@ const styles = theme => ({
     flexGrow: 1,
   },
   btnStyle:{
-    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    paddingRight:'3vh',
+    paddingLeft:'3vh'
   },
   menuButton: {
     marginLeft: -12,
@@ -89,7 +90,6 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit,
     paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
-    width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: 120,
       '&:focus': {
@@ -112,6 +112,13 @@ class NavAppBar extends React.Component {
     });
   };
 
+  handleSearchOpen = event => {
+    this.setState({ searching: true });
+  };
+
+  handleSearchClose = () => {
+    this.setState({ searching: false });
+  };
 
 
   render() {

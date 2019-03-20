@@ -30,6 +30,23 @@ const theme = createMuiTheme({
 });
 
 const styles = theme => ({
+<<<<<<< HEAD
+  parallax : {
+    backgroundColor: theme.palette.grey[800],
+
+    /* The image used */
+    backgroundImage:"url(https://images.unsplash.com/photo-1548679847-1d4ff48016c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80)",
+    /* Full height */
+    height:"100vh",
+    opacity:".75",
+    /* Create the parallax scrolling effect */
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover", 
+  },
+=======
+>>>>>>> be54db707b42f9ff1419ae7fbfb6e05f5dab6802
   appBarPlaceHolder : {
     backgroundColor: theme.palette.grey[800],
   },
@@ -201,6 +218,17 @@ handleOliverPage = () => {
           handleAboutPage={this.handleAboutPage}
           handleContactPage={this.handleContactPage}
         />
+        <Paper id='backGrnd' className={classes.parallax}>
+          <Button variant="contained" onClick={this.handleClick} className={classes.button}>
+            Scroll Down 
+            <br />
+            (Or Click, who cares)
+          </Button>
+        </Paper>
+        <div ref={this.goHere} className='locator'></div>
+        {this.getPage(this.state.pageId)}
+        <NavAppBarPlaceholder/>
+        <Paper id='backGrnd' className={classes.parallax}></Paper>
        
         <Location center={gMapCoords.center} zoom={gMapCoords.zoom}/>
         <Footer 
