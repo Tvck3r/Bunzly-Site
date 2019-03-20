@@ -243,6 +243,7 @@ class Checkout extends React.Component {
                       onClick={this.handleNext}
                       className={classes.button}
                     >
+                    {/* this is where the handleSendEmail goes */}
                       {activeStep === steps.length - 1 ? 'Send Email' : 'Next'}
                     </Button>
                   </div>
