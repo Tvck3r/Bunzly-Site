@@ -4,19 +4,21 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
-import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-import {  Redirect} from 'react-router-dom'
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import Collapse from '@material-ui/core/Collapse';
-
-
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import WorkIcon from '@material-ui/icons/Work';
+import EmailIcon from '@material-ui/icons/Email';
 
 //import SearchIcon from '@material-ui/icons/Search';
 //import InputBase from '@material-ui/core/InputBase';
@@ -67,7 +69,7 @@ const styles = theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-    width: '100%',
+    width: '10%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing.unit,
       width: 'auto',
@@ -81,10 +83,6 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-    width: '100%',
   },
   inputInput: {
     paddingTop: theme.spacing.unit * 2.5,
@@ -102,23 +100,16 @@ const styles = theme => ({
 });
 
 
-
 class NavAppBar extends React.Component {
   state = {
-    anchorEl: null,
-    pagesAnchorEl: null,
-    mobileMoreAnchorEl: null,
-    navValue:null,
-    searching:false,
-    sticky:false
+    mobileMenuToggle:false,
+    navValue:null
   };
 
-  handleMobileMenuOpen = event => {
-    this.setState({ mobileMoreAnchorEl: event.currentTarget });
-  };
-
-  handleMobileMenuClose = () => {
-    this.setState({ mobileMoreAnchorEl: null });
+  toggleDrawer = (open) => () => {
+    this.setState({
+      mobileMenuToggle: open,
+    });
   };
 
   handleSearchOpen = event => {
@@ -129,97 +120,59 @@ class NavAppBar extends React.Component {
     this.setState({ searching: false });
   };
 
-  handleContactUsMobileMenuSelection = event => {
-    console.log("contact-us-mobile-nav was clicked");
-    this.handleMobileMenuClose();
-    this.setState({ navValue:'contact-us'});
-  }
-
-  handleAboutMobileMenuSelection = event => {
-    console.log("about-mobile-nav was clicked");
-    this.handleMobileMenuClose();
-    this.setState({ navValue:'about'});
-  }
-
-  handleUsersMobileMenuSelection = event => {
-    console.log("users-mobile-nav was clicked");
-    this.handleMobileMenuClose();
-    this.setState({ navValue:'users'});
-  }
-
-
 
   render() {
-    const { pagesAnchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
-    const isPagesMenuOpen = Boolean(pagesAnchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-    if (this.state.navValue === 'contact-us') {
-      return <Redirect to='/ContactUs' />
-    }
-    if (this.state.navValue === 'checkout') {
-      return <Redirect to='/CheckOut' />
-    }
-    if (this.state.navValue === 'about') {
-      return <Redirect to='/About' />
-    }
-    if (this.state.navValue === 'users') {
-      return <Redirect to='/Users' />
-    }
+    const pages = [
+      {
+        pageName: 'Home',
+        method: this.props.handleHomePage,
+        icon:<HomeIcon></HomeIcon>
+      },
+      {
+        pageName: 'About',
+        method: this.props.handleAboutPage,
+        icon:<AccountCircle></AccountCircle>
+      },
+      {
+        pageName: 'Services',
+        method: this.props.handleHomePage,
+        icon:<WorkIcon></WorkIcon>
+      },
+      {
+        pageName: 'Contact',
+        method: this.props.handleContactPage,
+        icon:<EmailIcon></EmailIcon>
+      }
+    ]
 
-
-
-    const renderPagesMenu = (
-        <Menu
-          anchorEl={pagesAnchorEl}
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-          open={isPagesMenuOpen}
-          onClose={this.handlePagesMenuClose}
-        >
-          <MenuItem onClick={this.handleCheckoutMenuClose}>Checkout</MenuItem>
-          <MenuItem onClick={this.handleUsersMenuClose}>Users</MenuItem>
-          <MenuItem onClick={this.handleAboutMenuClose}>About</MenuItem>
-        </Menu>
-      );
-
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMobileMenuClose}
-      >
-        <MenuItem onClick={this.handleContactUsMobileMenuSelection}>
-          Contact
-        </MenuItem>
-        <MenuItem onClick={this.handleCheckOutMobileMenuSelection}>
-          Checkout
-        </MenuItem>
-        <MenuItem onClick={this.handleUsersMobileMenuClose}>
-          Users
-        </MenuItem>
-        <MenuItem onClick={this.handleAboutMobileMenuClose}>
-          About
-        </MenuItem>
-      </Menu>
+    const mobileSideBarMenu = (
+      <div className={classes.list}>
+        <List>
+          {pages.map(page => (
+            <ListItem button key={page.pageName} onClick={page.method}>
+              <ListItemIcon>
+              {page.icon}
+              </ListItemIcon>
+              <ListItemText primary={page.pageName} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
     );
 
     return (
       <div >
         <AppBar 
-          className={classes.appBar} 
-          style={{ background: this.props.appBarTransparency, boxShadow: this.props.appBarShadow}} 
+           style={{ background: this.props.appBarTransparency, boxShadow: this.props.appBarShadow}} 
            //  style={{ background: this.props.appBarState}} 
           position='fixed'
           //position={this.props.appBarState} 
           color="default">
           <Toolbar  >
-            <div></div>
-            <IconButton  href='/' className={classes.menuButton} color="inherit" aria-label="goHome">
-              <Typography   style={{ fontSize: this.props.logoSize  }} className={classes.title} variant="h5" color="inherit" noWrap>
+            <IconButton onClick={this.props.handleHomePage}className={classes.menuButton} color="inherit" aria-label="goHome">
+              <Typography style={{ fontSize: this.props.logoSize  }} className={classes.title} variant="h5" color="inherit" >
                 Bunzly.io
               </Typography>
             </IconButton>
@@ -229,43 +182,41 @@ class NavAppBar extends React.Component {
 
 
             <div className={classes.sectionDesktop}>
-              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
+              <Button color="inherit" onClick={this.props.handleHomePage}>
                 <p>Home</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
+              <Button color="inherit" onClick={this.props.handleAboutPage}>
                 <p>About</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
+              <Button color="inherit" >
                 <p>Services</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
-                <p>References</p>
-              </Button>
-
-              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
+              <Button color="inherit" onClick={this.props.handleContactPage}>
                 <p>Contact</p>
               </Button>
               
               <div className={classes.grow} />
-              <Button  >
-                <SearchIcon/>
-              </Button>
-            
-              <Collapse width="0px" in={true}>
-              {/*   <div className={classes.search}> */}
-                <InputBase width="0px"
-                    placeholder="Search…"
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                    }}
-                  />
-                         
-              </Collapse>
-         
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <Button 
+                  aria-haspopup="true"
+                  color="inherit"
+                  >
+                  <SearchIcon />
+                  </Button>
+                </div>
+                
+                <InputBase
+                fullWidth='false'
+                  //placeholder="Search…"
+                  classes={{
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
 
               
             </div>
@@ -273,17 +224,22 @@ class NavAppBar extends React.Component {
 
             {/* here is where you put what it looks like when phone size */}
             <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+              <IconButton aria-haspopup="true" onClick={this.toggleDrawer(true)} color="inherit">
                 <MoreIcon />
               </IconButton>
+              <Drawer anchor="right" open={this.state.mobileMenuToggle} onClose={this.toggleDrawer(false)}>
+                <div
+                  tabIndex={0}
+                  role="button"
+                  onClick={this.toggleDrawer(false)}
+                  onKeyDown={this.toggleDrawer( false)}
+                >
+                {mobileSideBarMenu}
+                </div>
+              </Drawer>
             </div>
-
-
           </Toolbar>
         </AppBar>
-   
-        {renderPagesMenu}
-        {renderMobileMenu}
       </div>
     );
   }

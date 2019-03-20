@@ -10,13 +10,16 @@ import ContactUs from './pages/ContactUs';
 import About from './pages/About'
 import Tucker from './pages/Tucker';
 import Oliver from './pages/Oliver';
+import Location from './components/Location';
 import Footer from './components/Footer';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+
 import cyan from '@material-ui/core/colors/cyan';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import NavAppBarPlaceholder from './components/NavAppBarPlaceholder';
+import { Typography } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,6 +30,7 @@ const theme = createMuiTheme({
 });
 
 const styles = theme => ({
+<<<<<<< HEAD
   parallax : {
     backgroundColor: theme.palette.grey[800],
 
@@ -41,16 +45,31 @@ const styles = theme => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover", 
   },
+=======
+>>>>>>> be54db707b42f9ff1419ae7fbfb6e05f5dab6802
   appBarPlaceHolder : {
     backgroundColor: theme.palette.grey[800],
   },
-  button: {
+  topButton: {
+    backgroundColor: 'transparent',
     margin: theme.spacing.unit,
     left: '50vw',
     top: '80vh',
-    transform: 'translate(-50%, -50%)',
+    boxShadow: 'none',
+  },
+  expandIcon: {
+    color: 'black',
+    fontSize: 60,
   },
 });
+
+const gMapCoords = {
+  center: {
+    lat: 35.2298704,
+    lng: -80.8405378
+  },
+  zoom: 10
+};
 
 class App extends Component {
 
@@ -60,65 +79,75 @@ class App extends Component {
       pageId: 0,
       plxHeight: 0,
       appBarState:'static',
-      pageId: 0
-      ,plxHeight: 0
-      ,logoMultiplyer: 1
-      ,logoSize: 30
-      ,appBarTransparency:'transparent'
-      ,appBarShadow:'none'
-      ,appBarState:'static'
+      pageId: 0,
+      plxHeight: 0,
+      logoMultiplyer: 1,
+      logoSize: 30,
+      appBarTransparency:'transparent',
+      appBarShadow:'none',
+      appBarState:'static'
     }
-    this.goHere = React.createRef()
 }
 
-
 getPage(pageId) {
-  switch (pageId) {
-    case 0:
-      return <Home/>;
-    case 1:
-      return <ContactUs/>;
-    case 2:
-      return <About 
-      handleTuckPage = {this.handleTuckPage}
-      handleOliverPage = {this.handleOliverPage}
-      />;
-      case 3:
-        return <Tucker />;
-      case 4:
-        return <Oliver />;
-    default:
-      throw new Error('Unknown step');
+  if(pageId === 0 ) {
+    return <Home />;
+  }
+  else if(pageId === 1 ) {
+    return <ContactUs/>;
+  }
+  else if(pageId === 2 ) {
+    return <About 
+    handleTuckPage = {this.handleTuckPage}
+    handleOliverPage = {this.handleOliverPage}
+    />;
+  }
+  else if(pageId === 3 ) {
+    return <Tucker />;
+  }
+  else if(pageId === 4 ) {
+    return <Oliver />;
+  }
+  else {
+    throw new Error('Unknown step');
   }
 }
 
 handleHomePage = () => {
   this.setState({
     pageId: 0,
+    logoMultiplyer: 1,
+    appBarTransparency:'transparent',
+    appBarShadow:'none',
+    appBarState:'static'
   });
 };
 
 handleContactPage = () => {
   this.setState({
     pageId: 1,
+    logoMultiplyer: 0,
   });
 };
 
 handleAboutPage = () => {
   this.setState({
     pageId: 2,
+    logoMultiplyer: 0,
   });
 };
 
 handleTuckPage = () => {
   this.setState({
     pageId: 3,
+    logoMultiplyer: 0,
   });
 };
 
 handleOliverPage = () => {
   this.setState({
     pageId: 4,
+    logoMultiplyer: 0,
   });
 };
 
@@ -126,7 +155,6 @@ handleOliverPage = () => {
   componentDidMount() {
     window.scrollTo(0,0);
     window.addEventListener('scroll', this.handleScroll);
-    this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight});  
   }
 
   
@@ -137,31 +165,29 @@ handleOliverPage = () => {
   logState = () =>{
     console.log(this.state)
   }
-
-  logScrolledState = () => {
-    console.log(this.state.scrolled)
-  }
   
   handleScroll = () => {
-   
-    const winScroll =
-    document.body.scrollTop || document.documentElement.scrollTop
-        
-    //this.state.plxHeight = 928
+    if(this.state.pageId === 0) {
+      const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop
+      this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight}); 
+      if(winScroll >= this.state.plxHeight){
+        this.setState({appBarState:'fixed'})
+        this.setState({appBarTransparency:'white'})
+        //this.setState({appBarShadow:null})
 
-  
-    if(winScroll >= this.state.plxHeight){
-      this.setState({appBarState:'fixed'})
-      this.setState({appBarTransparency:'white'})
-      //this.setState({appBarShadow:null})
-
-      //console.log('Sticky!')
+        //console.log('Sticky!')
+      }
+      else {
+        this.setState({logoMultiplyer:(this.state.plxHeight - winScroll)/this.state.plxHeight})
+        this.setState({appBarState:'static'})
+        this.setState({appBarTransparency:'transparent'})
+        this.setState({appBarShadow:'none'})
+      }
     }
     else {
-      this.setState({logoMultiplyer:(this.state.plxHeight- winScroll)/this.state.plxHeight})
-      this.setState({appBarState:'static'})
-      this.setState({appBarTransparency:'transparent'})
-      this.setState({appBarShadow:'none'})
+      this.setState({appBarState:'fixed'})
+      this.setState({appBarTransparency:'white'})
     }
   
 
@@ -172,32 +198,25 @@ handleOliverPage = () => {
         return <NavAppBarPlaceholder/>
       }
       else 
-        return <div/>;
+        return <div/>
   }
-
-  scrollToMyRef = () => window.scrollTo({
-    top: this.goHere.current.offsetTop,
-    bottom: this.goHere.current.offsetBottom,
-    behavior: 'smooth'
-  })
-
-  handleClick = () => {
-    this.scrollToMyRef()
-  }
-
   
   render() {
     const { classes } = this.props;
-    const { scrolled } = this.state;
-    this.logScrolledState()
 
     return (
-      <div className="App">       
+      <div className="App">    
+       
+        {this.getPage(this.state.pageId)}
+        
         <NavAppBar 
           appBarState={this.state.appBarState} 
           logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
           appBarTransparency={this.state.appBarTransparency}
           appBarShadow={this.state.appBarShadow}
+          handleHomePage={this.handleHomePage}
+          handleAboutPage={this.handleAboutPage}
+          handleContactPage={this.handleContactPage}
         />
         <Paper id='backGrnd' className={classes.parallax}>
           <Button variant="contained" onClick={this.handleClick} className={classes.button}>
@@ -210,6 +229,8 @@ handleOliverPage = () => {
         {this.getPage(this.state.pageId)}
         <NavAppBarPlaceholder/>
         <Paper id='backGrnd' className={classes.parallax}></Paper>
+       
+        <Location center={gMapCoords.center} zoom={gMapCoords.zoom}/>
         <Footer 
         handleHomePage={this.handleHomePage} 
         handleContactPage={this.handleContactPage} 
