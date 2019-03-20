@@ -14,6 +14,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import {  Redirect} from 'react-router-dom'
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import Collapse from '@material-ui/core/Collapse';
+
+
 
 //import SearchIcon from '@material-ui/icons/Search';
 //import InputBase from '@material-ui/core/InputBase';
@@ -30,7 +33,8 @@ const styles = theme => ({
     flexGrow: 1,
   },
   btnStyle:{
-    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    paddingRight:'3vh',
+    paddingLeft:'3vh'
   },
   menuButton: {
     marginLeft: -12,
@@ -88,7 +92,6 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit,
     paddingLeft: theme.spacing.unit * 10,
     transition: theme.transitions.create('width'),
-    width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: 120,
       '&:focus': {
@@ -98,22 +101,16 @@ const styles = theme => ({
   },
 });
 
+
+
 class NavAppBar extends React.Component {
   state = {
     anchorEl: null,
     pagesAnchorEl: null,
     mobileMoreAnchorEl: null,
     navValue:null,
+    searching:false,
     sticky:false
-  };
-   
-  handlePagesMenuOpen = event => {
-    this.setState({ pagesAnchorEl: event.currentTarget });
-  };
-
-  handlePagesMenuClose = () => {
-    this.setState({ pagesAnchorEl: null });
-    this.handleMobileMenuClose();
   };
 
   handleMobileMenuOpen = event => {
@@ -124,17 +121,18 @@ class NavAppBar extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleSearchOpen = event => {
+    this.setState({ searching: true });
+  };
+
+  handleSearchClose = () => {
+    this.setState({ searching: false });
+  };
 
   handleContactUsMobileMenuSelection = event => {
     console.log("contact-us-mobile-nav was clicked");
     this.handleMobileMenuClose();
     this.setState({ navValue:'contact-us'});
-  }
-
-  handleCheckOutMobileMenuSelection = event => {
-    console.log("checkout-mobile-nav was clicked");
-    this.handleMobileMenuClose();
-    this.setState({ navValue:'checkout'});
   }
 
   handleAboutMobileMenuSelection = event => {
@@ -149,23 +147,6 @@ class NavAppBar extends React.Component {
     this.setState({ navValue:'users'});
   }
 
-  handleCheckoutMenuClose = event => {
-    console.log("contact-us-nav was clicked");
-    this.handlePagesMenuClose();
-    this.setState({ navValue:'contact-us'});
-  }
-
-  handleCheckOutMobileMenuSelection = event => {
-    console.log("checkout-nav was clicked");
-    this.handlePagesMenuClose();
-    this.setState({ navValue:'checkout'});
-  }
-
-  handleAboutMenuClose = event => {
-    console.log("about-nav was clicked");
-    this.handlePagesMenuClose();
-    this.setState({ navValue:'about'});
-  }
 
 
   render() {
@@ -186,6 +167,8 @@ class NavAppBar extends React.Component {
     if (this.state.navValue === 'users') {
       return <Redirect to='/Users' />
     }
+
+
 
     const renderPagesMenu = (
         <Menu
@@ -246,56 +229,43 @@ class NavAppBar extends React.Component {
 
 
             <div className={classes.sectionDesktop}>
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
                 <p>Home</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
                 <p>About</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
                 <p>Services</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
                 <p>References</p>
               </Button>
 
-              <Button color="inherit" href='/ContactUs' >
+              <Button color="inherit" href='/ContactUs' className={classes.btnStyle}>
                 <p>Contact</p>
-              </Button>
-
-              <Button 
-                aria-owns={isPagesMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handlePagesMenuOpen}
-                color="inherit"
-              >
-                Pages
               </Button>
               
               <div className={classes.grow} />
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <Button 
-                  aria-owns={isPagesMenuOpen ? 'material-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handlePagesMenuOpen}
-                  color="inherit"
-                  >
-                  <SearchIcon />
-                  </Button>
-
-                </div>
-                <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                />
-              </div>
+              <Button  >
+                <SearchIcon/>
+              </Button>
+            
+              <Collapse width="0px" in={true}>
+              {/*   <div className={classes.search}> */}
+                <InputBase width="0px"
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                  />
+                         
+              </Collapse>
+         
 
               
             </div>

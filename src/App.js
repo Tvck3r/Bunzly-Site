@@ -31,10 +31,10 @@ const styles = theme => ({
     backgroundColor: theme.palette.grey[800],
 
     /* The image used */
-    backgroundImage:"url(https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483__340.jpg)",
+    backgroundImage:"url(https://images.unsplash.com/photo-1548679847-1d4ff48016c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80)",
     /* Full height */
     height:"100vh",
-    opacity:".65",
+    opacity:".75",
     /* Create the parallax scrolling effect */
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
@@ -208,6 +208,7 @@ handleOliverPage = () => {
         </Paper>
         <div ref={this.goHere} className='locator'></div>
         {this.getPage(this.state.pageId)}
+        <NavAppBarPlaceholder/>
         <Paper id='backGrnd' className={classes.parallax}></Paper>
         <Footer 
         handleHomePage={this.handleHomePage} 
