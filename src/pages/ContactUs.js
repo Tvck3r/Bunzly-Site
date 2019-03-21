@@ -17,6 +17,12 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
+<<<<<<< HEAD
+=======
+import NavAppBar from '../components/NavAppBar';
+import Footer from '../components/Footer';
+
+>>>>>>> daec47fb7b11e7e926458e1aadb9e5382e164e33
 
 
 //https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
@@ -163,6 +169,21 @@ class Checkout extends React.Component {
         console.log('SUCCESS!')
       })
   }; */
+  // handleSendEmail = (event) => {
+  //   event.preventDefault()
+
+  //   const templateParams = {
+  //     from_name: this.state.firstName + " " + this.state.lastName,
+  //     to_name: 'yabunz01@gmail.com',
+  //     subject: 'A new Form Submission on Bunzly.io!!',
+  //     message_html: this.state.message
+  //   }
+
+  //   emailjs.send("mailgun", "template_g1MaYj9z", templateParams, process.env.REACT_APP_EMAILJS_USERID)
+  //     .then(function (response) {
+  //       console.log('SUCCESS!')
+  //     })
+  // };
 
   handleBack = () => {
     this.setState(state => ({
