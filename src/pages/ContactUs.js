@@ -10,20 +10,13 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
 // Components
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
-<<<<<<< HEAD
-=======
-import NavAppBar from '../components/NavAppBar';
-import Footer from '../components/Footer';
-
->>>>>>> daec47fb7b11e7e926458e1aadb9e5382e164e33
-
 
 //https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
 
@@ -196,11 +189,6 @@ class Checkout extends React.Component {
       activeStep: 0,
     });
   };
-
-  //prebuilt method - calls when rerendering
-  componentDidMount(){
-    window.scrollTo(0,0);
-  }
 
   
   render() {
