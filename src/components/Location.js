@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'; 
 import GoogleMapReact from 'google-map-react';
 
-
-
 const styles = theme => ({
       layout: {
         width: 'auto',
