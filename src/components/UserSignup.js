@@ -58,26 +58,6 @@ const AddressForm = (props) => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            value={props.city}
-            onChange={props.cityChanged} 
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="billing address-level2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField 
-          value={props.region}
-          onChange={props.regionChanged} 
-          id="region" 
-          name="region" 
-          label="State/Province/Region" 
-          fullWidth />
-        </Grid>
       </Grid>
     </React.Fragment>
   );
