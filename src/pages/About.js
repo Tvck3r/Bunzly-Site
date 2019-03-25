@@ -24,6 +24,7 @@ import Zoom from '@material-ui/core/Zoom';
 // Components
 import NavAppBar from '../components/NavAppBar';
 import Footer from '../components/Footer';
+import Location from '../components/Location';
 import QuoteBlock from '../components/QuoteBlock';
 //import Markdown from '../components/Markdown'
 
@@ -237,7 +238,14 @@ class About extends React.Component {
               {/* End sidebar */}
             </Grid>
           </main>
+          
         </div>
+        <br/>
+        <Typography  className={classes.heroContent} component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Location
+        </Typography>
+        <Location/>
+        <br/>
       </React.Fragment>
     );
   }               

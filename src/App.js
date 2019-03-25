@@ -1,7 +1,5 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
-
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Home from './pages/Home';
@@ -10,7 +8,7 @@ import ContactUs from './pages/ContactUs';
 import About from './pages/About'
 import Tucker from './pages/Tucker';
 import Oliver from './pages/Oliver';
-import Location from './components/Location';
+
 import Footer from './components/Footer';
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -20,6 +18,8 @@ import cyan from '@material-ui/core/colors/cyan';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import NavAppBarPlaceholder from './components/NavAppBarPlaceholder';
 import { Typography } from '@material-ui/core';
+
+require('dotenv').config()
 
 const theme = createMuiTheme({
   palette: {
@@ -60,13 +60,7 @@ const styles = theme => ({
   },
 });
 
-const gMapCoords = {
-  center: {
-    lat: 35.2298704,
-    lng: -80.8405378
-  },
-  zoom: 10
-};
+
 
 class App extends Component {
 
@@ -76,13 +70,11 @@ class App extends Component {
       pageId: 0,
       plxHeight: 0,
       appBarState:'static',
-      pageId: 0,
-      plxHeight: 0,
+      appbarHeight:0,
       logoMultiplyer: 1,
       logoSize: 30,
       appBarTransparency:'transparent',
       appBarShadow:'none',
-      appBarState:'static'
     }
 }
 
@@ -168,12 +160,16 @@ handleOliverPage = () => {
       const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop
       this.setState({ plxHeight: document.getElementById('backGrnd').clientHeight}); 
+      //this.setState({ appbarHeight: document.getElementById('appbar').clientHeight}); 
       if(winScroll >= this.state.plxHeight){
         this.setState({appBarState:'fixed'})
         this.setState({appBarTransparency:'white'})
-        //this.setState({appBarShadow:null})
+        this.setState({appBarShadow:null})
 
         //console.log('Sticky!')
+      }
+      else if((winScroll + this.state.appbarHeight) >= this.state.plxHeight){
+
       }
       else {
         this.setState({logoMultiplyer:(this.state.plxHeight - winScroll)/this.state.plxHeight})
@@ -198,6 +194,7 @@ handleOliverPage = () => {
         return <div/>
   }
   
+  
   render() {
     const { classes } = this.props;
 
@@ -206,19 +203,22 @@ handleOliverPage = () => {
        
         {this.getPage(this.state.pageId)}
         
+        <div className='appbar'>
         <NavAppBar 
           appBarState={this.state.appBarState} 
-          logoSize={this.state.logoSize + (this.state.logoSize * this.state.logoMultiplyer)}
+          logoSize={this.state.logoSize}
           appBarTransparency={this.state.appBarTransparency}
           appBarShadow={this.state.appBarShadow}
           handleHomePage={this.handleHomePage}
           handleAboutPage={this.handleAboutPage}
           handleContactPage={this.handleContactPage}
+          
         />
+        </div>
+        
         <div ref={this.goHere} className='locator'></div>
+    
       
-       
-        <Location center={gMapCoords.center} zoom={gMapCoords.zoom}/>
         <Footer 
         handleHomePage={this.handleHomePage} 
         handleContactPage={this.handleContactPage} 

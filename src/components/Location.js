@@ -19,14 +19,13 @@ const styles = theme => ({
 
 const Mapblock = ({ text }) => <div>{text}</div>;
 
-// This needs to be passed in the App.js
-// const defaultProps = {
-//     center: {
-//       lat: 59.95,
-//       lng: 30.33
-//     },
-//     zoom: 11
-//   };
+const gMapCoords = {
+  center: {
+    lat: 35.2298704,
+    lng: -80.8405378
+  },
+  zoom: 10
+};
 
 
 const Location = (props) => {
@@ -36,12 +35,11 @@ const Location = (props) => {
   
 
     return (
-        
         <div style={{ height: '50vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY}}
-          defaultCenter={props.center}
-          defaultZoom={props.zoom}
+          bootstrapURLKeys={{ key:'AIzaSyAvXNMWL_VlxkViHbo6vUs5TanivLTpd48'}}
+          defaultCenter={gMapCoords.center}
+          defaultZoom={gMapCoords.zoom}
         >
           <Mapblock
             lat={35.2033919}
@@ -58,3 +56,7 @@ Location.propTypes = {
   };
 
 export default withStyles(styles)(Location);
+
+
+
+

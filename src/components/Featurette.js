@@ -5,6 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+
 const styles = theme => ({
   root: {
     flexGrow: 1, 
@@ -41,25 +48,41 @@ function CenteredGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container direction={directionVar} spacing={24} alignItems='center'>
-        <Grid item xs={12} sm ={4}>
-          <img          
-              className={classes.image}
-              src={props.src}
-              alt="Featurette Img"
-          />
-        </Grid>
-        <Grid item xs={12} sm ={8}>
-            <Paper className={classes.paper}> 
+   
+
+      <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              //className={classes.image}
+              image={props.src}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h4" component="h2">
+                {props.header}
+              </Typography>
+              <Typography variant="subtitle1" component="p">
+                {props.body}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+ 
+
+  {/*           <Paper className={classes.paper}> 
+              <img          
+                  className={classes.image}
+                  src={props.src}
+                  alt="Featurette Img"
+              />
               <Typography gutterBottom variant="h4">
                 {props.header}
               </Typography>
               <Typography gutterBottom variant="subtitle1">
                 {props.body}
               </Typography>
-            </Paper>
-        </Grid>
-    </Grid>
+            </Paper> */}
+
     </div>
   );
 }
