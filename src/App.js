@@ -21,8 +21,6 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import NavAppBarPlaceholder from './components/NavAppBarPlaceholder';
 import { Typography } from '@material-ui/core';
 
-require('dotenv').config()
-
 const theme = createMuiTheme({
   palette: {
     primary: { main: lightBlue[700] }, // Purple and green play nicely together.
