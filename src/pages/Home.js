@@ -6,13 +6,14 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Location from '../components/Location';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
 // Components
 import Footer from '../components/Footer'
 import Featurette from '../components/Featurette';
+import Grid from '@material-ui/core/Grid';
 import NavAppBar from '../components/NavAppBar';
-
 
 
 const styles = theme => ({
@@ -27,7 +28,7 @@ const styles = theme => ({
     /* The image used */
     backgroundImage:"url(https://images.unsplash.com/photo-1548031076-e0f45007f853?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)",
     /* Full height */
-    height:"100vh",
+    height:"20vh",
     opacity:".65",
     /* Create the parallax scrolling effect */
     backgroundAttachment: "fixed",
@@ -46,6 +47,17 @@ const styles = theme => ({
     paddingBottom: `${theme.spacing.unit * 6}px`,
     paddingLeft: `${theme.spacing.unit * 12}px`,
     paddingRight: `${theme.spacing.unit * 12}px`,
+  },
+  heroUnit: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  heroContent: {
+    maxWidth: 600,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
+  heroButtons: {
+    marginTop: theme.spacing.unit * 4,
   },
   callToAction:{
     //margin: 'auto',
@@ -69,7 +81,7 @@ const styles = theme => ({
   },
   layout: {
     width: 'auto',
-    paddingTop: `${theme.spacing.unit * 12}px`,
+    //padding: `${theme.spacing.unit * 8}px 0`,
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up('lg')]: {
@@ -78,6 +90,9 @@ const styles = theme => ({
       marginRight: 'auto',
     },
   }, 
+  greyBackground:{
+    backgroundColor: '#f8f8f8',
+  },
   topButton: {
     margin: theme.spacing.unit,
     left: '50vw',
@@ -117,7 +132,7 @@ class Home extends Component  {
     window.scrollTo(0,0);
   } 
 
-  scrollToMyRef = () => window.scrollTo({
+ /*  scrollToMyRef = () => window.scrollTo({
     top: this.goHere.current.offsetTop,
     bottom: this.goHere.current.offsetBottom,
     behavior: 'smooth'
@@ -125,7 +140,18 @@ class Home extends Component  {
   
   handleClick = () => {
     this.scrollToMyRef()
-  }
+  } */
+
+  
+
+
+  handleDialogOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDailogClose = () => {
+    this.setState({ open: false });
+  };
 
     
   render() {
@@ -134,38 +160,74 @@ class Home extends Component  {
 
     return (
       <React.Fragment> 
-          <Paper id='backGrnd' className={classes.parallax}>
-            <Button variant="contained" onClick={this.handleClick} className={classes.topButton}>
-              <ExpandMore className={classes.expandIcon} />
-            </Button>
-          </Paper>    
-        <main className={classes.layout} ref={this.goHere}  >
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Services
+        <Paper id='backGrnd' className={classes.parallax}>
+       {/*    <Button variant="contained" onClick={this.handleClick} className={classes.topButton}>
+            <ExpandMore className={classes.expandIcon} />
+          </Button> */}
+        </Paper>     
+        <div className={classes.heroUnit} ref={this.goHere}  >
+          <div className={classes.heroContent}>
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              Get in touch
             </Typography>
-          <Featurette 
-            header='Define'
-            body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
-            side='left'
-            src='https://images.unsplash.com/photo-1496902526517-c0f2cb8fdb6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'>
-          </Featurette>
-          <Featurette
-            header='Design'
-            body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
-            side='right'
-            src='https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80'>
-          </Featurette>
-          <Featurette
-            header='Develop'
-            body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
-            side='left'
-            src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
-          </Featurette>
+            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+              Schedule a FREE software development assessment and learn how we can increase your productivity and reduce risk
+            </Typography>
+            <div className={classes.heroButtons}>
+              <Grid container spacing={16} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    Contact us
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    learn more
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
+          </div>
+        </div>
+        <main className={classes.greyBackground}  >
+        <Typography  className={classes.heroContent} component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Methodology
+        </Typography>
+        <Grid className={classes.layout} container spacing={40} alignItems='center'>
+          <Grid item xs={12}  sm ={4}> 
+            <Featurette 
+                header='Define'
+                body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+                side='left'
+                src='https://images.unsplash.com/photo-1496902526517-c0f2cb8fdb6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'>
+            </Featurette>
+          </Grid>
+          <Grid item xs={12} sm ={4}> 
+            <Featurette
+              header='Design'
+              body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+              side='right'
+              src='https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1957&q=80'>
+            </Featurette>
+          </Grid>
+          <Grid item xs={12} sm ={4}> 
+            <Featurette
+              header='Develop'
+              body='Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.'
+              side='left'
+              src='https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1011&q=80'>
+            </Featurette>
+          </Grid>
+        </Grid>
+        
+         
+        
         </main> 
         <br/>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Our Location
+        <Typography  className={classes.heroContent} component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          Location
         </Typography>
+        <Location/>
         <br/>
       </React.Fragment>
 

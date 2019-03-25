@@ -166,9 +166,9 @@ class NavAppBar extends React.Component {
       <div >
         <AppBar 
            style={{ background: this.props.appBarTransparency, boxShadow: this.props.appBarShadow}} 
-           //  style={{ background: this.props.appBarState}} 
+             //style={{ background: this.props.appBarState}} 
           position='fixed'
-          //position={this.props.appBarState} 
+          
           color="default">
           <Toolbar  >
             <IconButton onClick={this.props.handleHomePage}className={classes.menuButton} color="inherit" aria-label="goHome">
@@ -217,11 +217,8 @@ class NavAppBar extends React.Component {
                   }}
                 />
               </div>
-
               
             </div>
-
-
             {/* here is where you put what it looks like when phone size */}
             <div className={classes.sectionMobile}>
               <IconButton aria-haspopup="true" onClick={this.toggleDrawer(true)} color="inherit">

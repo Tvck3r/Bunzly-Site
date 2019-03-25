@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as emailjs from 'emailjs-com'
+
 // Material-ui Components
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,16 +12,13 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 
 // Components
 import UserSignup from '../components/UserSignup';
 import CraftMessage from '../components/CraftMessage';
 import EmailConfirmation from '../components/EmailConfirmation';
-import NavAppBar from '../components/NavAppBar';
-import Footer from '../components/Footer';
-
 
 //https://stackoverflow.com/questions/24147331/react-the-right-way-to-pass-form-element-state-to-sibling-parent-elements
 
@@ -78,8 +77,6 @@ class Checkout extends React.Component {
     lastName:null,
     email:null,
     phoneNumber:null,
-    city:null,
-    stateProvReg:null,
     message:null
   }
 
@@ -100,14 +97,8 @@ class Checkout extends React.Component {
           email={this.state.email}
           emailChanged={this.emailChangeHandler}
 
-          phone={this.state.phone}
+          phone={this.state.phoneNumber}
           phoneChanged={this.phoneChangeHandler}
-
-          city={this.state.city}
-          cityChanged={this.cityChangeHandler}
-
-          region={this.state.region}
-          regionChanged={this.regionChangeHandler}
         />;
       case 1:
         return <CraftMessage
@@ -124,12 +115,12 @@ class Checkout extends React.Component {
     }
   }
 
+  
+
   firstNameChangeHandler = (event) => {this.setState({firstName:event.target.value})}
   lastNameChangeHandler = (event) => {this.setState({lastName:event.target.value})}
   emailChangeHandler = (event) => {this.setState({email:event.target.value})}
-  phoneChangeHandler = (event) => {this.setState({phone:event.target.value})}
-  cityChangeHandler = (event) => {this.setState({city:event.target.value})}
-  regionChangeHandler = (event) => {this.setState({region:event.target.value})}
+  phoneChangeHandler = (event) => {this.setState({phoneNumber:event.target.value})}
   messageChangeHandler = (event) => {this.setState({message:event.target.value})}  
 
   
@@ -140,46 +131,27 @@ class Checkout extends React.Component {
     }));
 
     if(this.state.activeStep === 2){
-      alert("Send email message:" 
-      + this.state.message + 
-      " to:" + this.state.firstName + " " + this.state.lastName + 
-      " @:" + this.state.email +
-      " #:" + this.state.phone + 
-      " @" + this.state.city + ", " + this.state.region)
+      this.handleSendEmail();
     }
   };
 
   // Still trying to figure out what variable is what, going to head home, put in a CC and see if I can get it working
-/*   handleSendEmail = (event) => {
-    event.preventDefault()
+    handleSendEmail = (event) => {
 
     const templateParams = {
       from_name: this.state.firstName + " " + this.state.lastName,
-      to_name: 'yabunz01@gmail.com',
+      to_name: 'Oliver or Tucker',
       subject: 'A new Form Submission on Bunzly.io!!',
+      email_address: this.state.email,
+      phone_number: this.state.phoneNumber,
       message_html: this.state.message
     }
 
-    emailjs.send("mailgun", "template_g1MaYj9z", templateParams, process.env.REACT_APP_EMAILJS_USERID)
+    emailjs.send("gmail", "template_g1MaYj9z", templateParams, process.env.REACT_APP_EMAILJS_USERID)
       .then(function (response) {
         console.log('SUCCESS!')
       })
-  }; */
-  // handleSendEmail = (event) => {
-  //   event.preventDefault()
-
-  //   const templateParams = {
-  //     from_name: this.state.firstName + " " + this.state.lastName,
-  //     to_name: 'yabunz01@gmail.com',
-  //     subject: 'A new Form Submission on Bunzly.io!!',
-  //     message_html: this.state.message
-  //   }
-
-  //   emailjs.send("mailgun", "template_g1MaYj9z", templateParams, process.env.REACT_APP_EMAILJS_USERID)
-  //     .then(function (response) {
-  //       console.log('SUCCESS!')
-  //     })
-  // };
+  }; 
 
   handleBack = () => {
     this.setState(state => ({
@@ -192,11 +164,6 @@ class Checkout extends React.Component {
       activeStep: 0,
     });
   };
-
-  //prebuilt method - calls when rerendering
-  componentDidMount(){
-    window.scrollTo(0,0);
-  }
 
   
   render() {
