@@ -30,7 +30,6 @@ const theme = createMuiTheme({
 });
 
 const styles = theme => ({
-<<<<<<< HEAD
   parallax : {
     backgroundColor: theme.palette.grey[800],
 
@@ -45,8 +44,6 @@ const styles = theme => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover", 
   },
-=======
->>>>>>> be54db707b42f9ff1419ae7fbfb6e05f5dab6802
   appBarPlaceHolder : {
     backgroundColor: theme.palette.grey[800],
   },
@@ -218,17 +215,8 @@ handleOliverPage = () => {
           handleAboutPage={this.handleAboutPage}
           handleContactPage={this.handleContactPage}
         />
-        <Paper id='backGrnd' className={classes.parallax}>
-          <Button variant="contained" onClick={this.handleClick} className={classes.button}>
-            Scroll Down 
-            <br />
-            (Or Click, who cares)
-          </Button>
-        </Paper>
         <div ref={this.goHere} className='locator'></div>
-        {this.getPage(this.state.pageId)}
-        <NavAppBarPlaceholder/>
-        <Paper id='backGrnd' className={classes.parallax}></Paper>
+      
        
         <Location center={gMapCoords.center} zoom={gMapCoords.zoom}/>
         <Footer 
