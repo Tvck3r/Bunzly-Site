@@ -80,7 +80,7 @@ class App extends Component {
 
 getPage(pageId) {
   if(pageId === 0 ) {
-    return <Home />;
+    return <Home  handleContactPage={this.handleContactPage}/>;
   }
   else if(pageId === 1 ) {
     return <ContactUs/>;

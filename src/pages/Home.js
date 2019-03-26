@@ -176,7 +176,7 @@ class Home extends Component  {
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={this.props.handleContactPage}>
                     Contact us
                   </Button>
                 </Grid>
