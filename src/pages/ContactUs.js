@@ -138,7 +138,6 @@ class Checkout extends React.Component {
   // Still trying to figure out what variable is what, going to head home, put in a CC and see if I can get it working
     handleSendEmail = (event) => {
 
-    console.log(process.env.REACT_APP_EMAILJS_USERID);
     const templateParams = {
       from_name: this.state.firstName + " " + this.state.lastName,
       to_name: 'Oliver or Tucker',
@@ -148,7 +147,7 @@ class Checkout extends React.Component {
       message_html: this.state.message
     }
 
-    emailjs.send("gmail", "template_g1MaYj9z", templateParams, process.env.REACT_APP_EMAILJS_USERID)
+    emailjs.send("gmail", "template_g1MaYj9z", templateParams, 'user_SLzvnEX4yUPaPfECV478E')
       .then(function (response) {
         console.log('SUCCESS!')
       })
