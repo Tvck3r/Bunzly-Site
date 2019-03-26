@@ -138,6 +138,7 @@ class Checkout extends React.Component {
   // Still trying to figure out what variable is what, going to head home, put in a CC and see if I can get it working
     handleSendEmail = (event) => {
 
+    console.log(process.env.REACT_APP_EMAILJS_USERID);
     const templateParams = {
       from_name: this.state.firstName + " " + this.state.lastName,
       to_name: 'Oliver or Tucker',
